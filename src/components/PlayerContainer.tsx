@@ -20,14 +20,14 @@ export interface PlayerProps {
 
 interface PlayerContainerProps<
 	TElement extends HTMLElement,
-	TPlayer extends PlayerApiImpl<TElement>,
+	TPlayerApi extends PlayerApiImpl<TElement>,
 > extends PlayerProps {
 	loadScript: (() => Promise<void>) | undefined;
 	playerApiFactory: new (
 		logger: ILogger,
 		playerElementRef: React.MutableRefObject<TElement>,
 		options: PlayerOptions | undefined,
-	) => TPlayer;
+	) => TPlayerApi;
 	children: (
 		playerElementRef: React.MutableRefObject<TElement>,
 		videoId: string,
@@ -36,7 +36,7 @@ interface PlayerContainerProps<
 
 export const PlayerContainer = <
 	TElement extends HTMLElement,
-	TPlayer extends PlayerApiImpl<TElement>,
+	TPlayerApi extends PlayerApiImpl<TElement>,
 >({
 	logger,
 	type,
@@ -46,8 +46,8 @@ export const PlayerContainer = <
 	loadScript,
 	playerApiFactory,
 	children,
-}: PlayerContainerProps<TElement, TPlayer>): React.ReactElement<
-	PlayerContainerProps<TElement, TPlayer>
+}: PlayerContainerProps<TElement, TPlayerApi>): React.ReactElement<
+	PlayerContainerProps<TElement, TPlayerApi>
 > => {
 	logger.log(LogLevel.Debug, 'PlayerContainer');
 

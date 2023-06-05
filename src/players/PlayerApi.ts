@@ -43,13 +43,13 @@ export interface IPlayerApi {
 
 export class PlayerApi<
 	TElement extends HTMLElement,
-	TPlayer extends PlayerApiImpl<TElement>,
+	TPlayerApi extends PlayerApiImpl<TElement>,
 > implements IPlayerApi
 {
 	private static nextId = 1;
 
 	private readonly id: number;
-	private impl?: TPlayer;
+	private impl?: TPlayerApi;
 
 	constructor(
 		private readonly logger: ILogger,
@@ -61,7 +61,7 @@ export class PlayerApi<
 			logger: ILogger,
 			playerElementRef: React.MutableRefObject<TElement>,
 			options: PlayerOptions | undefined,
-		) => TPlayer,
+		) => TPlayerApi,
 	) {
 		this.id = PlayerApi.nextId++;
 	}
