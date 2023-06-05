@@ -1,23 +1,7 @@
-import React from 'react';
-
-import { ILogger } from './ILogger';
-import { PlayerOptions } from './PlayerApi';
 import { PlayerApiImpl } from './PlayerApiImpl';
 
 // https://github.com/VocaDB/vocadb/blob/e147650a8f1f85c8fa865d0ab562126c278527ec/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerSoundCloud.ts.
-export class SoundCloudPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
-	private readonly player: SC.SoundCloudWidget;
-
-	constructor(
-		logger: ILogger,
-		playerElementRef: React.MutableRefObject<HTMLIFrameElement>,
-		options: PlayerOptions | undefined,
-	) {
-		super(logger, playerElementRef, options);
-
-		this.player = SC.Widget(this.playerElementRef.current);
-	}
-
+export class SoundCloudPlayerApi extends PlayerApiImpl<SC.SoundCloudWidget> {
 	private getDurationCore(): Promise<number> {
 		return new Promise((resolve, reject /* TODO: Reject. */) => {
 			this.player.getDuration(resolve);

@@ -20,12 +20,14 @@ export interface PlayerProps {
 
 interface PlayerContainerProps<
 	TElement extends HTMLElement,
-	TPlayerApi extends PlayerApiImpl<TElement>,
+	TPlayer extends object,
+	TPlayerApi extends PlayerApiImpl<TPlayer>,
 > extends PlayerProps {
 	loadScript: (() => Promise<void>) | undefined;
+	playerFactory: (element: TElement) => Promise<TPlayer>;
 	playerApiFactory: new (
 		logger: ILogger,
-		playerElementRef: React.MutableRefObject<TElement>,
+		player: TPlayer,
 		options: PlayerOptions | undefined,
 	) => TPlayerApi;
 	children: (
@@ -36,18 +38,20 @@ interface PlayerContainerProps<
 
 export const PlayerContainer = <
 	TElement extends HTMLElement,
-	TPlayerApi extends PlayerApiImpl<TElement>,
+	TPlayer extends object,
+	TPlayerApi extends PlayerApiImpl<TPlayer>,
 >({
 	logger,
 	type,
+	loadScript,
+	playerFactory,
 	playerApiRef,
 	videoId,
 	options,
-	loadScript,
 	playerApiFactory,
 	children,
-}: PlayerContainerProps<TElement, TPlayerApi>): React.ReactElement<
-	PlayerContainerProps<TElement, TPlayerApi>
+}: PlayerContainerProps<TElement, TPlayer, TPlayerApi>): React.ReactElement<
+	PlayerContainerProps<TElement, TPlayer, TPlayerApi>
 > => {
 	logger.log(LogLevel.Debug, 'PlayerContainer');
 
@@ -56,16 +60,28 @@ export const PlayerContainer = <
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	const playerElementRef = React.useRef<TElement>(undefined!);
 
+	const [player, setPlayer] = React.useState<TPlayer>();
 	const [playerApi, setPlayerApi] = React.useState<IPlayerApi>();
+
+	React.useEffect(() => {
+		(loadScript?.() ?? Promise.resolve()).then(() => {
+			playerFactory(playerElementRef.current).then((player) => {
+				setPlayer(player);
+			});
+		});
+	}, [loadScript, playerFactory]);
 
 	// Make sure that `options` do not change between re-rendering.
 	React.useEffect(() => {
+		if (player === undefined) {
+			return;
+		}
+
 		const playerApi = new PlayerApi(
 			logger,
 			type,
-			playerElementRef,
+			player,
 			options,
-			loadScript,
 			playerApiFactory,
 		);
 
@@ -86,7 +102,15 @@ export const PlayerContainer = <
 
 			playerApi.detach().finally(() => setPlayerApi(undefined));
 		};
-	}, [logger, type, options, loadScript, playerApiFactory, playerApiRef]);
+	}, [
+		logger,
+		type,
+		loadScript,
+		player,
+		options,
+		playerApiFactory,
+		playerApiRef,
+	]);
 
 	const previousVideoId = usePreviousDistinct(videoId);
 	React.useEffect(() => {

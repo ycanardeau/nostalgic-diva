@@ -10,10 +10,18 @@ export const AudioPlayer = React.memo(
 
 		logger.log(LogLevel.Debug, 'AudioPlayer');
 
+		const playerFactory = React.useCallback(
+			(element: HTMLAudioElement): Promise<HTMLAudioElement> => {
+				return Promise.resolve(element);
+			},
+			[],
+		);
+
 		return (
-			<PlayerContainer
+			<PlayerContainer<HTMLAudioElement, HTMLAudioElement, AudioPlayerApi>
 				{...props}
 				loadScript={undefined}
+				playerFactory={playerFactory}
 				playerApiFactory={AudioPlayerApi}
 			>
 				{(playerElementRef, videoId): React.ReactElement => (

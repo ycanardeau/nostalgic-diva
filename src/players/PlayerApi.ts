@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { ILogger, LogLevel } from './ILogger';
 import { PlayerApiImpl } from './PlayerApiImpl';
 
@@ -42,8 +40,8 @@ export interface IPlayerApi {
 }
 
 export class PlayerApi<
-	TElement extends HTMLElement,
-	TPlayerApi extends PlayerApiImpl<TElement>,
+	TPlayer extends object,
+	TPlayerApi extends PlayerApiImpl<TPlayer>,
 > implements IPlayerApi
 {
 	private static nextId = 1;
@@ -54,12 +52,11 @@ export class PlayerApi<
 	constructor(
 		private readonly logger: ILogger,
 		private readonly type: PlayerType,
-		private readonly playerElementRef: React.MutableRefObject<TElement>,
+		private readonly player: TPlayer,
 		private readonly options: PlayerOptions | undefined,
-		private readonly loadScript: (() => Promise<void>) | undefined,
 		private readonly playerApiFactory: new (
 			logger: ILogger,
-			playerElementRef: React.MutableRefObject<TElement>,
+			player: TPlayer,
 			options: PlayerOptions | undefined,
 		) => TPlayerApi,
 	) {
@@ -94,13 +91,11 @@ export class PlayerApi<
 			return;
 		}
 
-		await this.loadScript?.();
-
 		this.debug('Attaching player...');
 
 		this.impl = new this.playerApiFactory(
 			this.logger,
-			this.playerElementRef,
+			this.player,
 			this.options,
 		);
 

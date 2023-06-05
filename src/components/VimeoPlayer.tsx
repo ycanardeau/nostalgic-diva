@@ -18,10 +18,18 @@ export const VimeoPlayer = React.memo(
 			);
 		}, [logger]);
 
+		const playerFactory = React.useCallback(
+			(element: HTMLIFrameElement): Promise<Vimeo.Player> => {
+				return Promise.resolve(new Vimeo.Player(element));
+			},
+			[],
+		);
+
 		return (
-			<PlayerContainer
+			<PlayerContainer<HTMLIFrameElement, Vimeo.Player, VimeoPlayerApi>
 				{...props}
 				loadScript={loadScript}
+				playerFactory={playerFactory}
 				playerApiFactory={VimeoPlayerApi}
 			>
 				{(playerElementRef, videoId): React.ReactElement => (

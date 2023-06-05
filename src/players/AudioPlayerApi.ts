@@ -1,23 +1,7 @@
-import React from 'react';
-
-import { ILogger } from './ILogger';
-import { PlayerOptions } from './PlayerApi';
 import { PlayerApiImpl } from './PlayerApiImpl';
 
 // https://github.com/VocaDB/vocadb/blob/61b8c54f3eca906a477101dab4fdd9b154be310e/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerFile.ts.
 export class AudioPlayerApi extends PlayerApiImpl<HTMLAudioElement> {
-	private readonly player: HTMLAudioElement;
-
-	constructor(
-		logger: ILogger,
-		playerElementRef: React.MutableRefObject<HTMLAudioElement>,
-		options: PlayerOptions | undefined,
-	) {
-		super(logger, playerElementRef, options);
-
-		this.player = playerElementRef.current;
-	}
-
 	async attach(): Promise<void> {
 		this.player.onerror = (event): void => this.options?.onError?.(event);
 		this.player.onloadeddata = (): void =>

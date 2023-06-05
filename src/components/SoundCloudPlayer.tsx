@@ -18,10 +18,22 @@ export const SoundCloudPlayer = React.memo(
 			);
 		}, [logger]);
 
+		const playerFactory = React.useCallback(
+			(element: HTMLIFrameElement): Promise<SC.SoundCloudWidget> => {
+				return Promise.resolve(SC.Widget(element));
+			},
+			[],
+		);
+
 		return (
-			<PlayerContainer
+			<PlayerContainer<
+				HTMLIFrameElement,
+				SC.SoundCloudWidget,
+				SoundCloudPlayerApi
+			>
 				{...props}
 				loadScript={loadScript}
+				playerFactory={playerFactory}
 				playerApiFactory={SoundCloudPlayerApi}
 			>
 				{(playerElementRef, videoId): React.ReactElement => (

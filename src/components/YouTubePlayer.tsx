@@ -5,6 +5,8 @@ import { YouTubePlayerApi } from '../players/YouTubePlayerApi';
 import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
+const origin = 'https://www.youtube-nocookie.com';
+
 export const YouTubePlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
@@ -30,10 +32,24 @@ export const YouTubePlayer = React.memo(
 			});
 		}, [logger]);
 
+		const playerFactory = React.useCallback(
+			(element: HTMLDivElement): Promise<YT.Player> => {
+				return Promise.resolve(
+					new YT.Player(element, {
+						host: origin,
+						width: '100%',
+						height: '100%',
+					}),
+				);
+			},
+			[],
+		);
+
 		return (
-			<PlayerContainer
+			<PlayerContainer<HTMLDivElement, YT.Player, YouTubePlayerApi>
 				{...props}
 				loadScript={loadScript}
+				playerFactory={playerFactory}
 				playerApiFactory={YouTubePlayerApi}
 			>
 				{(playerElementRef): React.ReactElement => (

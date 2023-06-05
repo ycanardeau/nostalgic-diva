@@ -10,10 +10,22 @@ export const NiconicoPlayer = React.memo(
 
 		logger.log(LogLevel.Debug, 'NiconicoPlayer');
 
+		const playerFactory = React.useCallback(
+			(element: HTMLIFrameElement): Promise<HTMLIFrameElement> => {
+				return Promise.resolve(element);
+			},
+			[],
+		);
+
 		return (
-			<PlayerContainer
+			<PlayerContainer<
+				HTMLIFrameElement,
+				HTMLIFrameElement,
+				NiconicoPlayerApi
+			>
 				{...props}
 				loadScript={undefined}
+				playerFactory={playerFactory}
 				playerApiFactory={NiconicoPlayerApi}
 			>
 				{(playerElementRef, videoId): React.ReactElement => (

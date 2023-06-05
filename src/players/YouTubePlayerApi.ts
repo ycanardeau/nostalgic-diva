@@ -1,7 +1,4 @@
-import React from 'react';
-
-import { ILogger, LogLevel } from './ILogger';
-import { PlayerOptions } from './PlayerApi';
+import { LogLevel } from './ILogger';
 import { PlayerApiImpl } from './PlayerApiImpl';
 
 declare global {
@@ -20,25 +17,7 @@ enum PlayerState {
 }
 
 // https://github.com/VocaDB/vocadb/blob/076dac9f0808aba5da7332209fdfd2ff4e12c235/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerYoutube.ts.
-export class YouTubePlayerApi extends PlayerApiImpl<HTMLDivElement> {
-	private static readonly origin = 'https://www.youtube-nocookie.com';
-
-	private readonly player: YT.Player;
-
-	constructor(
-		logger: ILogger,
-		playerElementRef: React.MutableRefObject<HTMLDivElement>,
-		options: PlayerOptions | undefined,
-	) {
-		super(logger, playerElementRef, options);
-
-		this.player = new YT.Player(this.playerElementRef.current, {
-			host: YouTubePlayerApi.origin,
-			width: '100%',
-			height: '100%',
-		});
-	}
-
+export class YouTubePlayerApi extends PlayerApiImpl<YT.Player> {
 	private previousTime?: number;
 
 	private timeUpdateIntervalId?: number;

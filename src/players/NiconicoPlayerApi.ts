@@ -1,7 +1,4 @@
-import React from 'react';
-
-import { ILogger, LogLevel } from './ILogger';
-import { PlayerOptions } from './PlayerApi';
+import { LogLevel } from './ILogger';
 import { PlayerApiImpl } from './PlayerApiImpl';
 
 declare global {
@@ -20,21 +17,9 @@ enum PlayerStatus {
 export class NiconicoPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
 	private static readonly origin = 'https://embed.nicovideo.jp';
 
-	private readonly player: HTMLIFrameElement;
-
 	private duration?: number;
 	private currentTime?: number;
 	private volume?: number;
-
-	constructor(
-		logger: ILogger,
-		playerElementRef: React.MutableRefObject<HTMLIFrameElement>,
-		options: PlayerOptions | undefined,
-	) {
-		super(logger, playerElementRef, options);
-
-		this.player = playerElementRef.current;
-	}
 
 	private handleMessage = (e: nico.PlayerEvent): void => {
 		if (e.origin !== NiconicoPlayerApi.origin) return;
