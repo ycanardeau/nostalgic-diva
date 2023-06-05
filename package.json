@@ -61,6 +61,8 @@
 		"dailymotion",
 		"niconico",
 		"soundcloud",
+		"twitch",
+		"vimeo",
 		"youtube"
 	],
 	"author": "Aigamo <51428094+ycanardeau@users.noreply.github.com>",

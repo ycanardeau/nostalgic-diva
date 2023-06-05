@@ -840,3 +840,66 @@ declare namespace DM {
 		);
 	}
 }
+
+declare namespace Twitch {
+	export interface PlaybackStats {
+		readonly backendVersion: string;
+		readonly bufferSize: number;
+		readonly codecs: string;
+		readonly displayResolution: string;
+		readonly fps: number;
+		readonly hlsLatencyBroadcaster: number;
+		readonly playbackRate: number;
+		readonly skippedFrames: number;
+		readonly videoResolution: string;
+	}
+
+	export class Player {
+		static readonly READY: number;
+		static readonly PLAYING: number;
+		static readonly PAUSE: number;
+		static readonly ENDED: number;
+		static readonly SEEK: number;
+
+		constructor(
+			playerDivId: HTMLDivElement,
+			options: (
+				| { channel: string }
+				| { video: string }
+				| { collection: string }
+			) & {
+				width: number | string;
+				height: number | string;
+				parent?: string[];
+				autoplay?: boolean;
+				muted?: boolean;
+				time?: string;
+			},
+		);
+
+		pause(): void;
+		play(): void;
+		seek(timestamp: number): void;
+		setChannel(channel: string): void;
+		setCollection(collectionId: string, videoId: string): void;
+		setQuality(quality: string): void;
+		setVideo(videoId: string, timestamp: number): void;
+		getMuted(): boolean;
+		setMuted(muted: boolean): void;
+		getVolume(): number;
+		setVolume(volumelevel: number): void;
+		getPlaybackStats(): PlaybackStats;
+		getChannel(): string;
+		getCurrentTime(): number;
+		getDuration(): number;
+		getQualities(): readonly string[];
+		getQuality(): string;
+		getVideo(): string;
+		isPaused(): boolean;
+
+		addEventListener(
+			event: READY | PLAYING | PAUSE | ENDED | SEEK,
+			listener: () => void,
+		): void;
+	}
+}

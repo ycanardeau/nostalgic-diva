@@ -8,6 +8,7 @@ import { NiconicoPlayer } from './NiconicoPlayer';
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
 import { SoundCloudPlayer } from './SoundCloudPlayer';
+import { TwitchPlayer } from './TwitchPlayer';
 import { VimeoPlayer } from './VimeoPlayer';
 import { YouTubePlayer } from './YouTubePlayer';
 
@@ -16,6 +17,7 @@ const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
 	Dailymotion: DailymotionPlayer,
 	Niconico: NiconicoPlayer,
 	SoundCloud: SoundCloudPlayer,
+	Twitch: TwitchPlayer,
 	Vimeo: VimeoPlayer,
 	YouTube: YouTubePlayer,
 };

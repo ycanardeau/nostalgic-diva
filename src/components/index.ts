@@ -4,5 +4,6 @@ export * from './NiconicoPlayer';
 export * from './NostalgicDiva';
 export * from './NostalgicDivaProvider';
 export * from './SoundCloudPlayer';
+export * from './TwitchPlayer';
 export * from './YouTubePlayer';
 export * from './VimeoPlayer';
