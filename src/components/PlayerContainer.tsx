@@ -69,7 +69,9 @@ export const PlayerContainer = <
 			playerApiFactory,
 		);
 
-		if (playerApiRef) playerApiRef.current = playerApi;
+		if (playerApiRef) {
+			playerApiRef.current = playerApi;
+		}
 
 		playerApi
 			.attach(videoIdRef.current)
@@ -82,7 +84,7 @@ export const PlayerContainer = <
 				}
 			}
 
-			playerApi.detach().then(() => setPlayerApi(undefined));
+			playerApi.detach().finally(() => setPlayerApi(undefined));
 		};
 	}, [logger, type, options, loadScript, playerApiFactory, playerApiRef]);
 
@@ -92,7 +94,9 @@ export const PlayerContainer = <
 		// 1. `<audio>`s `src` attribute (e.g. `AudioPlayer`),
 		// 2. `<iframe>`'s `src` attribute (e.g. `NiconicoPlayer`, `SoundCloudPlayer` and `VimeoPlayer`), or
 		// 3. the `attach` method of the player API (e.g. `YouTubePlayer`).
-		if (previousVideoId === undefined) return;
+		if (previousVideoId === undefined) {
+			return;
+		}
 
 		playerApi?.loadVideo(videoId);
 	}, [previousVideoId, videoId, playerApi]);
