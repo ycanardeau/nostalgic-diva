@@ -24,7 +24,7 @@ interface PlayerContainerProps<
 	TPlayerApi extends PlayerApiImpl<TPlayer>,
 > extends PlayerProps {
 	loadScript: (() => Promise<void>) | undefined;
-	playerFactory: (element: TElement) => Promise<TPlayer>;
+	playerFactory: (element: TElement, videoId: string) => Promise<TPlayer>;
 	playerApiFactory: new (
 		logger: ILogger,
 		player: TPlayer,
@@ -65,9 +65,11 @@ export const PlayerContainer = <
 
 	React.useEffect(() => {
 		(loadScript?.() ?? Promise.resolve()).then(() => {
-			playerFactory(playerElementRef.current).then((player) => {
-				setPlayer(player);
-			});
+			playerFactory(playerElementRef.current, videoIdRef.current).then(
+				(player) => {
+					setPlayer(player);
+				},
+			);
 		});
 	}, [loadScript, playerFactory]);
 

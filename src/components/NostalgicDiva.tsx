@@ -3,6 +3,7 @@ import React from 'react';
 import { LogLevel } from '../players/ILogger';
 import { PlayerOptions, PlayerType } from '../players/PlayerApi';
 import { AudioPlayer } from './AudioPlayer';
+import { DailymotionPlayer } from './DailymotionPlayer';
 import { NiconicoPlayer } from './NiconicoPlayer';
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
@@ -12,6 +13,7 @@ import { YouTubePlayer } from './YouTubePlayer';
 
 const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
 	Audio: AudioPlayer,
+	Dailymotion: DailymotionPlayer,
 	Niconico: NiconicoPlayer,
 	SoundCloud: SoundCloudPlayer,
 	Vimeo: VimeoPlayer,

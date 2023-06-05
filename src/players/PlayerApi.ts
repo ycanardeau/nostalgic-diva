@@ -3,6 +3,7 @@ import { PlayerApiImpl } from './PlayerApiImpl';
 
 export type PlayerType =
 	| 'Audio'
+	| 'Dailymotion'
 	| 'Niconico'
 	| 'SoundCloud'
 	| 'Vimeo'

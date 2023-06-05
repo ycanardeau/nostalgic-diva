@@ -1,6 +1,6 @@
 # Nostalgic Diva
 
-React function components for imperatively controlling embedded players (audio, [Niconico](https://www.nicovideo.jp/), [SoundCloud](https://soundcloud.com/), [Vimeo](https://vimeo.com/) and [YouTube](https://www.youtube.com/)) using refs.
+React function components for imperatively controlling embedded players (audio, [Dailymotion](https://www.dailymotion.com/) [Niconico](https://www.nicovideo.jp/), [SoundCloud](https://soundcloud.com/), [Vimeo](https://vimeo.com/) and [YouTube](https://www.youtube.com/)) using refs.
 
 This was originally developed in [VocaDB/vocadb#1101](https://github.com/VocaDB/vocadb/pull/1101) as a part of VocaDB.
 
@@ -123,3 +123,4 @@ The `attach` function is called when switching from another player (Audio, Nicon
 -   [YouTube Player API Reference for iframe Embeds | YouTube IFrame Player API | Google Developers](https://developers.google.com/youtube/iframe_api_reference)
 -   [How to support Reusable State in Effects · Discussion #18 · reactwg/react-18](https://github.com/reactwg/react-18/discussions/18)
 -   [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+-   [dailymotion/dailymotion-sdk-js: Dailymotion JavaScript client API](https://github.com/dailymotion/dailymotion-sdk-js)

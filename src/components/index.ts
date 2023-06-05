@@ -1,4 +1,5 @@
 export * from './AudioPlayer';
+export * from './DailymotionPlayer';
 export * from './NiconicoPlayer';
 export * from './NostalgicDiva';
 export * from './NostalgicDivaProvider';

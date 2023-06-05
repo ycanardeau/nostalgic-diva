@@ -757,3 +757,86 @@ declare namespace YT {
 		PLAYING,
 	}
 }
+
+declare namespace DM {
+	export type EventType =
+		| 'apiready'
+		| 'play'
+		| 'playback_ready'
+		| 'playing'
+		| 'canplay'
+		| 'canplaythrough'
+		| 'loadedmetadata'
+		| 'timeupdate'
+		| 'progress'
+		| 'seeking'
+		| 'seeked'
+		| 'volumechange'
+		| 'durationchange'
+		| 'controlschange'
+		| 'pause'
+		| 'start'
+		| 'end'
+		| 'video_start'
+		| 'video_end'
+		| 'ended'
+		| 'error'
+		| 'fullscreenchange'
+		| 'qualitiesavailable'
+		| 'qualitychange'
+		| 'subtitlesavailable'
+		| 'subtitlechange'
+		| 'ad_start'
+		| 'ad_timeupdate'
+		| 'ad_play'
+		| 'ad_pause'
+		| 'ad_end'
+		| 'videochange'
+		| 'ad_companions';
+
+	export class player {
+		constructor(
+			container: HTMLDivElement,
+			{
+				width,
+				height,
+				video,
+				events,
+			}: {
+				width: string;
+				height: string;
+				video: string;
+				events?: {
+					apiready(): void;
+					seeked(): void;
+					video_end(): void;
+					durationchange(): void;
+					pause(): void;
+					playing(): void;
+					waiting(): void;
+					error(event): void;
+				};
+			},
+		);
+
+		load(video: string): void;
+		play(): void;
+		pause(): void;
+		seek(second: number): void;
+		setVolume(volume: number): void;
+		setMuted(muted: boolean): void;
+		readonly duration: number;
+		readonly currentTime: number;
+		readonly volume: number;
+		readonly video: { videoId: string };
+
+		addEventListener(
+			event: EventType,
+			listener: (e: { type: EventType }) => void,
+		);
+		removeEventListener(
+			event: EventType,
+			listener: (e: { type: EventType }) => void,
+		);
+	}
+}
