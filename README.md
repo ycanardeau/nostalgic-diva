@@ -1,6 +1,6 @@
 # Nostalgic Diva
 
-React function components for imperatively controlling embedded players (audio, [Dailymotion](https://www.dailymotion.com/) [Niconico](https://www.nicovideo.jp/), [SoundCloud](https://soundcloud.com/), [Twitch](https://www.twitch.tv/), [Vimeo](https://vimeo.com/) and [YouTube](https://www.youtube.com/)) using refs.
+React function components for imperatively controlling embedded players (audio, [Dailymotion](https://www.dailymotion.com/), [Niconico](https://www.nicovideo.jp/), [SoundCloud](https://soundcloud.com/), [Twitch](https://www.twitch.tv/), [Vimeo](https://vimeo.com/) and [YouTube](https://www.youtube.com/)) using refs.
 
 This was originally developed in [VocaDB/vocadb#1101](https://github.com/VocaDB/vocadb/pull/1101) as a part of VocaDB.
 
