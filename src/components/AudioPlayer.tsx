@@ -4,7 +4,7 @@ import { AudioPlayerApi } from '../players/AudioPlayerApi';
 import { LogLevel } from '../players/ILogger';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-export const AudioPlayer = React.memo(
+const AudioPlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -38,3 +38,5 @@ export const AudioPlayer = React.memo(
 		);
 	},
 );
+
+export default AudioPlayer;

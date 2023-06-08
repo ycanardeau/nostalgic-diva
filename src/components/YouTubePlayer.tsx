@@ -7,7 +7,7 @@ import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const origin = 'https://www.youtube-nocookie.com';
 
-export const YouTubePlayer = React.memo(
+const YouTubePlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -61,3 +61,5 @@ export const YouTubePlayer = React.memo(
 		);
 	},
 );
+
+export default YouTubePlayer;

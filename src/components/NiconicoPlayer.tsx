@@ -4,7 +4,7 @@ import { LogLevel } from '../players/ILogger';
 import { NiconicoPlayerApi } from '../players/NiconicoPlayerApi';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-export const NiconicoPlayer = React.memo(
+const NiconicoPlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -47,3 +47,5 @@ export const NiconicoPlayer = React.memo(
 		);
 	},
 );
+
+export default NiconicoPlayer;

@@ -5,7 +5,7 @@ import { VimeoPlayerApi } from '../players/VimeoPlayerApi';
 import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-export const VimeoPlayer = React.memo(
+const VimeoPlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -46,3 +46,5 @@ export const VimeoPlayer = React.memo(
 		);
 	},
 );
+
+export default VimeoPlayer;

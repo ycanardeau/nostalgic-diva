@@ -5,7 +5,7 @@ import { TwitchPlayerApi } from '../players/TwitchPlayerApi';
 import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-export const TwitchPlayer = React.memo(
+const TwitchPlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -51,3 +51,5 @@ export const TwitchPlayer = React.memo(
 		);
 	},
 );
+
+export default TwitchPlayer;

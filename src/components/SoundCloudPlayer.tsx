@@ -5,7 +5,7 @@ import { SoundCloudPlayerApi } from '../players/SoundCloudPlayerApi';
 import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-export const SoundCloudPlayer = React.memo(
+const SoundCloudPlayer = React.memo(
 	({ ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -46,3 +46,5 @@ export const SoundCloudPlayer = React.memo(
 		);
 	},
 );
+
+export default SoundCloudPlayer;

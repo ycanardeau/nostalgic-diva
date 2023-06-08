@@ -2,15 +2,16 @@ import React from 'react';
 
 import { LogLevel } from '../players/ILogger';
 import { PlayerOptions, PlayerType } from '../players/PlayerApi';
-import { AudioPlayer } from './AudioPlayer';
-import { DailymotionPlayer } from './DailymotionPlayer';
-import { NiconicoPlayer } from './NiconicoPlayer';
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
-import { SoundCloudPlayer } from './SoundCloudPlayer';
-import { TwitchPlayer } from './TwitchPlayer';
-import { VimeoPlayer } from './VimeoPlayer';
-import { YouTubePlayer } from './YouTubePlayer';
+
+const AudioPlayer = React.lazy(() => import('./AudioPlayer'));
+const DailymotionPlayer = React.lazy(() => import('./DailymotionPlayer'));
+const NiconicoPlayer = React.lazy(() => import('./NiconicoPlayer'));
+const SoundCloudPlayer = React.lazy(() => import('./SoundCloudPlayer'));
+const TwitchPlayer = React.lazy(() => import('./TwitchPlayer'));
+const VimeoPlayer = React.lazy(() => import('./VimeoPlayer'));
+const YouTubePlayer = React.lazy(() => import('./YouTubePlayer'));
 
 const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
 	Audio: AudioPlayer,
@@ -36,13 +37,15 @@ export const NostalgicDiva = React.memo(
 
 		const Player = players[type];
 		return (
-			<Player
-				logger={logger}
-				type={type}
-				playerApiRef={playerApiRef}
-				videoId={videoId}
-				options={options}
-			/>
+			<React.Suspense fallback={null}>
+				<Player
+					logger={logger}
+					type={type}
+					playerApiRef={playerApiRef}
+					videoId={videoId}
+					options={options}
+				/>
+			</React.Suspense>
 		);
 	},
 );

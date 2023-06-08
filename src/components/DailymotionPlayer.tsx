@@ -5,7 +5,7 @@ import { LogLevel } from '../players/ILogger';
 import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-export const DailymotionPlayer = React.memo(
+const DailymotionPlayer = React.memo(
 	({ options, ...props }: PlayerProps): React.ReactElement => {
 		const { logger } = props;
 
@@ -71,3 +71,5 @@ export const DailymotionPlayer = React.memo(
 		);
 	},
 );
+
+export default DailymotionPlayer;
