@@ -18,7 +18,7 @@ export const AudioPlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<HTMLAudioElement, HTMLAudioElement, AudioPlayerApi>
+			<PlayerContainer
 				{...props}
 				loadScript={undefined}
 				playerFactory={playerFactory}

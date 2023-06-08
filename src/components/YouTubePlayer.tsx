@@ -46,7 +46,7 @@ export const YouTubePlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<HTMLDivElement, YT.Player, YouTubePlayerApi>
+			<PlayerContainer
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}

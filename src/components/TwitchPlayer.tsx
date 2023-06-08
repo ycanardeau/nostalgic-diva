@@ -35,7 +35,7 @@ export const TwitchPlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<HTMLDivElement, Twitch.Player, TwitchPlayerApi>
+			<PlayerContainer
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}

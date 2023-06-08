@@ -18,11 +18,7 @@ export const NiconicoPlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<
-				HTMLIFrameElement,
-				HTMLIFrameElement,
-				NiconicoPlayerApi
-			>
+			<PlayerContainer
 				{...props}
 				loadScript={undefined}
 				playerFactory={playerFactory}

@@ -26,11 +26,7 @@ export const SoundCloudPlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<
-				HTMLIFrameElement,
-				SC.SoundCloudWidget,
-				SoundCloudPlayerApi
-			>
+			<PlayerContainer
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}

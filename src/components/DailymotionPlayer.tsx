@@ -55,7 +55,7 @@ export const DailymotionPlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<HTMLDivElement, DM.player, DailymotionPlayerApi>
+			<PlayerContainer
 				{...props}
 				options={options}
 				loadScript={loadScript}

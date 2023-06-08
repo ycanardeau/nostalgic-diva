@@ -26,7 +26,7 @@ export const VimeoPlayer = React.memo(
 		);
 
 		return (
-			<PlayerContainer<HTMLIFrameElement, Vimeo.Player, VimeoPlayerApi>
+			<PlayerContainer
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}
