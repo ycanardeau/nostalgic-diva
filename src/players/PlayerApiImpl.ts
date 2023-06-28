@@ -18,7 +18,9 @@ export abstract class PlayerApiImpl<TPlayer> implements IPlayerApi {
 	abstract setCurrentTime(seconds: number): Promise<void>;
 	abstract setVolume(volume: number): Promise<void>;
 	abstract setMuted(muted: boolean): Promise<void>;
+	abstract setPlaybackRate(playbackRate: number): Promise<void>;
 	abstract getDuration(): Promise<number | undefined>;
 	abstract getCurrentTime(): Promise<number | undefined>;
 	abstract getVolume(): Promise<number | undefined>;
+	abstract getPlaybackRate(): Promise<number | undefined>;
 }

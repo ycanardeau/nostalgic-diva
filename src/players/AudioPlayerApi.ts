@@ -51,6 +51,10 @@ export class AudioPlayerApi extends PlayerApiImpl<HTMLAudioElement> {
 		this.player.muted = muted;
 	}
 
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		this.player.playbackRate = playbackRate;
+	}
+
 	async getDuration(): Promise<number | undefined> {
 		return this.player.duration;
 	}
@@ -61,5 +65,9 @@ export class AudioPlayerApi extends PlayerApiImpl<HTMLAudioElement> {
 
 	async getVolume(): Promise<number | undefined> {
 		return this.player.volume;
+	}
+
+	async getPlaybackRate(): Promise<number | undefined> {
+		return this.player.playbackRate;
 	}
 }

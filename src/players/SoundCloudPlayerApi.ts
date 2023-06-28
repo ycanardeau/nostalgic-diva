@@ -89,6 +89,10 @@ export class SoundCloudPlayerApi extends PlayerApiImpl<SC.SoundCloudWidget> {
 		this.setVolume(muted ? 0 : 1 /* TODO */);
 	}
 
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		/* Not supported. */
+	}
+
 	async getDuration(): Promise<number | undefined> {
 		const duration = await this.getDurationCore();
 		return duration / 1000;
@@ -114,5 +118,9 @@ export class SoundCloudPlayerApi extends PlayerApiImpl<SC.SoundCloudWidget> {
 	async getVolume(): Promise<number | undefined> {
 		const volume = await this.getVolumeCore();
 		return volume / 100;
+	}
+
+	async getPlaybackRate(): Promise<number | undefined> {
+		return 1; /* Not supported. */
 	}
 }

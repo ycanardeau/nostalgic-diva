@@ -145,6 +145,10 @@ export class YouTubePlayerApi extends PlayerApiImpl<YT.Player> {
 		}
 	}
 
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		this.player.setPlaybackRate(playbackRate);
+	}
+
 	async getDuration(): Promise<number | undefined> {
 		return this.player.getDuration();
 	}
@@ -155,5 +159,9 @@ export class YouTubePlayerApi extends PlayerApiImpl<YT.Player> {
 
 	async getVolume(): Promise<number | undefined> {
 		return this.player.getVolume() / 100;
+	}
+
+	async getPlaybackRate(): Promise<number | undefined> {
+		return this.player.getPlaybackRate();
 	}
 }

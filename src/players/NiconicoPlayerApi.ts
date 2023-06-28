@@ -174,6 +174,10 @@ export class NiconicoPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
 		});
 	}
 
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		/* Not supported. */
+	}
+
 	async getDuration(): Promise<number | undefined> {
 		return this.duration;
 	}
@@ -184,5 +188,9 @@ export class NiconicoPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
 
 	async getVolume(): Promise<number | undefined> {
 		return this.volume;
+	}
+
+	async getPlaybackRate(): Promise<number | undefined> {
+		return 1 /* Not supported. */;
 	}
 }

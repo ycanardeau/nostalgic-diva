@@ -54,15 +54,23 @@ export class VimeoPlayerApi extends PlayerApiImpl<Vimeo.Player> {
 		await this.player.setMuted(muted);
 	}
 
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		await this.player.setPlaybackRate(playbackRate);
+	}
+
 	async getDuration(): Promise<number | undefined> {
 		return this.player.getDuration();
 	}
 
 	async getCurrentTime(): Promise<number | undefined> {
-		return await this.player.getCurrentTime();
+		return this.player.getCurrentTime();
 	}
 
 	async getVolume(): Promise<number | undefined> {
-		return await this.player.getVolume();
+		return this.player.getVolume();
+	}
+
+	async getPlaybackRate(): Promise<number | undefined> {
+		return this.player.getPlaybackRate();
 	}
 }

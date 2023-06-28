@@ -90,6 +90,10 @@ export const NostalgicDivaProvider = ({
 		await playerApiRef.current?.setMuted(muted);
 	}, []);
 
+	const setPlaybackRate = React.useCallback(async (playbackRate: number) => {
+		await playerApiRef.current?.setPlaybackRate(playbackRate);
+	}, []);
+
 	const getDuration = React.useCallback(async () => {
 		return await playerApiRef.current?.getDuration();
 	}, []);
@@ -102,6 +106,10 @@ export const NostalgicDivaProvider = ({
 		return await playerApiRef.current?.getVolume();
 	}, []);
 
+	const getPlaybackRate = React.useCallback(async () => {
+		return await playerApiRef.current?.getPlaybackRate();
+	}, []);
+
 	const value = React.useMemo(
 		(): NostalgicDivaContextProps => ({
 			logger,
@@ -112,9 +120,11 @@ export const NostalgicDivaProvider = ({
 			setCurrentTime,
 			setVolume,
 			setMuted,
+			setPlaybackRate,
 			getDuration,
 			getCurrentTime,
 			getVolume,
+			getPlaybackRate,
 		}),
 		[
 			logger,
@@ -124,9 +134,11 @@ export const NostalgicDivaProvider = ({
 			setCurrentTime,
 			setVolume,
 			setMuted,
+			setPlaybackRate,
 			getDuration,
 			getCurrentTime,
 			getVolume,
+			getPlaybackRate,
 		],
 	);
 

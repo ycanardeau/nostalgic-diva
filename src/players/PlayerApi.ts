@@ -36,9 +36,11 @@ export interface IPlayerApi {
 	setCurrentTime(seconds: number): Promise<void>;
 	setVolume(volume: number): Promise<void>;
 	setMuted(muted: boolean): Promise<void>;
+	setPlaybackRate(playbackRate: number): Promise<void>;
 	getDuration(): Promise<number | undefined>;
 	getCurrentTime(): Promise<number | undefined>;
 	getVolume(): Promise<number | undefined>;
+	getPlaybackRate(): Promise<number | undefined>;
 }
 
 export class PlayerApi<
@@ -186,6 +188,16 @@ export class PlayerApi<
 		return this.impl.setMuted(muted);
 	}
 
+	setPlaybackRate(playbackRate: number): Promise<void> {
+		this.debug('setPlaybackRate', playbackRate);
+
+		if (this.impl === undefined) {
+			throw this.createPlayerNotAttachedError();
+		}
+
+		return this.impl.setPlaybackRate(playbackRate);
+	}
+
 	getDuration(): Promise<number | undefined> {
 		this.debug('getDuration');
 
@@ -214,5 +226,15 @@ export class PlayerApi<
 		}
 
 		return this.impl.getVolume();
+	}
+
+	getPlaybackRate(): Promise<number | undefined> {
+		this.debug('getPlaybackRate');
+
+		if (this.impl === undefined) {
+			throw this.createPlayerNotAttachedError();
+		}
+
+		return this.impl.getPlaybackRate();
 	}
 }
