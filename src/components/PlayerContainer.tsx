@@ -13,9 +13,7 @@ import usePreviousDistinct from './usePreviousDistinct';
 export interface PlayerProps {
 	logger: ILogger;
 	type: `${PlayerType}`;
-	controllerRef:
-		| React.MutableRefObject<IPlayerController | undefined>
-		| undefined;
+	onControllerChange: (value: IPlayerController | undefined) => void;
 	videoId: string;
 	options: PlayerOptions | undefined;
 }
@@ -47,7 +45,7 @@ export const PlayerContainer = <
 	type,
 	loadScript,
 	playerFactory,
-	controllerRef,
+	onControllerChange,
 	videoId,
 	options,
 	controllerFactory,
@@ -63,7 +61,11 @@ export const PlayerContainer = <
 	const elementRef = React.useRef<TElement>(undefined!);
 
 	const [player, setPlayer] = React.useState<TPlayer>();
+
 	const [controller, setController] = React.useState<IPlayerController>();
+	React.useEffect(() => {
+		onControllerChange(controller);
+	}, [controller, onControllerChange]);
 
 	React.useEffect(() => {
 		(loadScript?.() ?? Promise.resolve()).then(() => {
@@ -89,32 +91,14 @@ export const PlayerContainer = <
 			controllerFactory,
 		);
 
-		if (controllerRef) {
-			controllerRef.current = controller;
-		}
-
 		controller
 			.attach(videoIdRef.current)
 			.then(() => setController(controller));
 
 		return (): void => {
-			if (controllerRef) {
-				if (controller !== controllerRef.current) {
-					throw new Error('controller differs');
-				}
-			}
-
 			controller.detach().finally(() => setController(undefined));
 		};
-	}, [
-		logger,
-		type,
-		loadScript,
-		player,
-		options,
-		controllerFactory,
-		controllerRef,
-	]);
+	}, [logger, type, loadScript, player, options, controllerFactory]);
 
 	const previousVideoId = usePreviousDistinct(videoId);
 	React.useEffect(() => {

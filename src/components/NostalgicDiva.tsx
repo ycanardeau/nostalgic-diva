@@ -1,7 +1,11 @@
 import React from 'react';
 
 import { LogLevel } from '../controllers/ILogger';
-import { PlayerOptions, PlayerType } from '../controllers/PlayerController';
+import {
+	IPlayerController,
+	PlayerOptions,
+	PlayerType,
+} from '../controllers/PlayerController';
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
 
@@ -27,13 +31,28 @@ export interface NostalgicDivaProps {
 	type: `${PlayerType}`;
 	videoId: string;
 	options?: PlayerOptions;
+	onControllerChange?: (value: IPlayerController | undefined) => void;
 }
 
 export const NostalgicDiva = React.memo(
-	({ type, videoId, options }: NostalgicDivaProps): React.ReactElement => {
+	({
+		type,
+		videoId,
+		options,
+		onControllerChange,
+	}: NostalgicDivaProps): React.ReactElement => {
 		const { logger, controllerRef } = useNostalgicDiva();
 
 		logger.log(LogLevel.Debug, 'NostalgicDiva');
+
+		const handleControllerChange = React.useCallback(
+			(value: IPlayerController | undefined) => {
+				controllerRef.current = value;
+
+				onControllerChange?.(value);
+			},
+			[controllerRef, onControllerChange],
+		);
 
 		const Player = players[type];
 		return (
@@ -41,7 +60,7 @@ export const NostalgicDiva = React.memo(
 				<Player
 					logger={logger}
 					type={type}
-					controllerRef={controllerRef}
+					onControllerChange={handleControllerChange}
 					videoId={videoId}
 					options={options}
 				/>
