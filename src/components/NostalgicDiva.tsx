@@ -23,7 +23,7 @@ const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
 	YouTube: YouTubePlayer,
 };
 
-interface NostalgicDivaProps {
+export interface NostalgicDivaProps {
 	type: PlayerType;
 	videoId: string;
 	options?: PlayerOptions;
