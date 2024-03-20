@@ -1,4 +1,4 @@
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 const events = [
 	'apiready',
@@ -10,7 +10,7 @@ const events = [
 	'error',
 ] satisfies DM.EventType[];
 
-export class DailymotionPlayerApi extends PlayerApiImpl<DM.player> {
+export class DailymotionPlayerController extends PlayerControllerImpl<DM.player> {
 	private handlePlayerEvents = (e: { type: DM.EventType }): void => {
 		switch (e.type) {
 			case 'apiready':

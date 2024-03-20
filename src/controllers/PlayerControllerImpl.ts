@@ -1,7 +1,9 @@
 import { ILogger, LogLevel } from './ILogger';
-import { IPlayerApi, PlayerOptions } from './PlayerApi';
+import { IPlayerController, PlayerOptions } from './PlayerController';
 
-export abstract class PlayerApiImpl<TPlayer> implements IPlayerApi {
+export abstract class PlayerControllerImpl<TPlayer>
+	implements IPlayerController
+{
 	constructor(
 		protected readonly logger: ILogger,
 		protected readonly player: TPlayer,

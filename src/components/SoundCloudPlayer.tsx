@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { LogLevel } from '../players/ILogger';
-import { SoundCloudPlayerApi } from '../players/SoundCloudPlayerApi';
-import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
+import { LogLevel } from '../controllers/ILogger';
+import { SoundCloudPlayerController } from '../controllers/SoundCloudPlayerController';
+import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const SoundCloudPlayer = React.memo(
@@ -30,12 +30,12 @@ const SoundCloudPlayer = React.memo(
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}
-				playerApiFactory={SoundCloudPlayerApi}
+				controllerFactory={SoundCloudPlayerController}
 			>
-				{(playerElementRef, videoId): React.ReactElement => (
+				{(elementRef, videoId): React.ReactElement => (
 					// eslint-disable-next-line jsx-a11y/iframe-has-title
 					<iframe
-						ref={playerElementRef}
+						ref={elementRef}
 						src={`https://w.soundcloud.com/player/?url=${videoId}`}
 						frameBorder={0}
 						allow="autoplay"

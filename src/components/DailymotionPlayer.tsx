@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { DailymotionPlayerApi } from '../players/DailymotionPlayerApi';
-import { LogLevel } from '../players/ILogger';
-import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
+import { DailymotionPlayerController } from '../controllers/DailymotionPlayerController';
+import { LogLevel } from '../controllers/ILogger';
+import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const DailymotionPlayer = React.memo(
@@ -60,11 +60,11 @@ const DailymotionPlayer = React.memo(
 				options={options}
 				loadScript={loadScript}
 				playerFactory={playerFactory}
-				playerApiFactory={DailymotionPlayerApi}
+				controllerFactory={DailymotionPlayerController}
 			>
-				{(playerElementRef): React.ReactElement => (
+				{(elementRef): React.ReactElement => (
 					<div style={{ width: '100%', height: '100%' }}>
-						<div ref={playerElementRef} />
+						<div ref={elementRef} />
 					</div>
 				)}
 			</PlayerContainer>

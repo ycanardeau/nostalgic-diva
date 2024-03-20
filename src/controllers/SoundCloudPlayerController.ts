@@ -1,7 +1,7 @@
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 // https://github.com/VocaDB/vocadb/blob/e147650a8f1f85c8fa865d0ab562126c278527ec/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerSoundCloud.ts.
-export class SoundCloudPlayerApi extends PlayerApiImpl<SC.SoundCloudWidget> {
+export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundCloudWidget> {
 	private getDurationCore(): Promise<number> {
 		return new Promise((resolve, reject /* TODO: Reject. */) => {
 			this.player.getDuration(resolve);
@@ -62,7 +62,7 @@ export class SoundCloudPlayerApi extends PlayerApiImpl<SC.SoundCloudWidget> {
 	}
 
 	async loadVideo(id: string): Promise<void> {
-		await SoundCloudPlayerApi.playerLoadAsync(this.player, id, {
+		await SoundCloudPlayerController.playerLoadAsync(this.player, id, {
 			auto_play: true,
 		});
 

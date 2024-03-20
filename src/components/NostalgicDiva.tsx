@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { LogLevel } from '../players/ILogger';
-import { PlayerOptions, PlayerType } from '../players/PlayerApi';
+import { LogLevel } from '../controllers/ILogger';
+import { PlayerOptions, PlayerType } from '../controllers/PlayerController';
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
 
@@ -31,7 +31,7 @@ export interface NostalgicDivaProps {
 
 export const NostalgicDiva = React.memo(
 	({ type, videoId, options }: NostalgicDivaProps): React.ReactElement => {
-		const { logger, playerApiRef } = useNostalgicDiva();
+		const { logger, controllerRef } = useNostalgicDiva();
 
 		logger.log(LogLevel.Debug, 'NostalgicDiva');
 
@@ -41,7 +41,7 @@ export const NostalgicDiva = React.memo(
 				<Player
 					logger={logger}
 					type={type}
-					playerApiRef={playerApiRef}
+					controllerRef={controllerRef}
 					videoId={videoId}
 					options={options}
 				/>

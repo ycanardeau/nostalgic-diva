@@ -1,7 +1,7 @@
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 // https://github.com/VocaDB/vocadb/blob/61b8c54f3eca906a477101dab4fdd9b154be310e/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerFile.ts.
-export class AudioPlayerApi extends PlayerApiImpl<HTMLAudioElement> {
+export class AudioPlayerController extends PlayerControllerImpl<HTMLAudioElement> {
 	async attach(): Promise<void> {
 		this.player.onerror = (event): void => this.options?.onError?.(event);
 		this.player.onloadeddata = (): void =>

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { LogLevel } from '../players/ILogger';
-import { VimeoPlayerApi } from '../players/VimeoPlayerApi';
-import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
+import { LogLevel } from '../controllers/ILogger';
+import { VimeoPlayerController } from '../controllers/VimeoPlayerController';
+import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const VimeoPlayer = React.memo(
@@ -30,12 +30,12 @@ const VimeoPlayer = React.memo(
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}
-				playerApiFactory={VimeoPlayerApi}
+				controllerFactory={VimeoPlayerController}
 			>
-				{(playerElementRef, videoId): React.ReactElement => (
+				{(elementRef, videoId): React.ReactElement => (
 					// eslint-disable-next-line jsx-a11y/iframe-has-title
 					<iframe
-						ref={playerElementRef}
+						ref={elementRef}
 						src={`https://player.vimeo.com/video/${videoId}`}
 						frameBorder={0}
 						allow="autoplay"

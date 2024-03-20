@@ -100,16 +100,16 @@ await diva.setCurrentTime(seconds);
 
 ## Lifecycle
 
-1. [PlayerApi.attach](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L84)
-1. [IPlayerApi.loadVideo](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L33)
-1. [PlayerOptions.onLoaded](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L25)
-1. [IPlayerApi.play](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L34)
-1. [PlayerOptions.onPlay](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L26)
-1. [PlayerOptions.onTimeUpdate](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L29)
-1. [IPlayerApi.pause](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L35)
-1. [PlayerOptions.onPause](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L27)
-1. [PlayerOptions.onEnded](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L28)
-1. [PlayerApi.detach](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerApi.ts#L111)
+1. [PlayerController.attach](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L84)
+1. [IPlayerController.loadVideo](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L33)
+1. [PlayerOptions.onLoaded](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L25)
+1. [IPlayerController.play](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L34)
+1. [PlayerOptions.onPlay](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L26)
+1. [PlayerOptions.onTimeUpdate](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L29)
+1. [IPlayerController.pause](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L35)
+1. [PlayerOptions.onPause](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L27)
+1. [PlayerOptions.onEnded](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L28)
+1. [PlayerController.detach](https://github.com/ycanardeau/nostalgic-diva/blob/5cc35c68cf71230f9459804a9dd9e9265cfa2297/src/players/PlayerController.ts#L111)
 
 The `attach` function is called when switching from another player (Audio, Niconico, SoundCloud and YouTube), and the `detach` function is called when switching to another player. After the `detach` function is called, you cannot use any imperative functions like `loadVideo`, `play`, `pause` and etc.
 

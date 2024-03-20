@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { LogLevel } from '../players/ILogger';
-import { YouTubePlayerApi } from '../players/YouTubePlayerApi';
-import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
+import { LogLevel } from '../controllers/ILogger';
+import { YouTubePlayerController } from '../controllers/YouTubePlayerController';
+import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const origin = 'https://www.youtube-nocookie.com';
@@ -50,11 +50,11 @@ const YouTubePlayer = React.memo(
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}
-				playerApiFactory={YouTubePlayerApi}
+				controllerFactory={YouTubePlayerController}
 			>
-				{(playerElementRef): React.ReactElement => (
+				{(elementRef): React.ReactElement => (
 					<div style={{ width: '100%', height: '100%' }}>
-						<div ref={playerElementRef} />
+						<div ref={elementRef} />
 					</div>
 				)}
 			</PlayerContainer>

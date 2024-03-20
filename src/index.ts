@@ -1,2 +1,2 @@
 export * from './components';
-export * from './players';
+export * from './controllers';

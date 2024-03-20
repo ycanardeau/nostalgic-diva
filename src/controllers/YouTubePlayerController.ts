@@ -1,5 +1,5 @@
 import { LogLevel } from './ILogger';
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 declare global {
 	interface Window {
@@ -17,7 +17,7 @@ enum PlayerState {
 }
 
 // https://github.com/VocaDB/vocadb/blob/076dac9f0808aba5da7332209fdfd2ff4e12c235/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerYoutube.ts.
-export class YouTubePlayerApi extends PlayerApiImpl<YT.Player> {
+export class YouTubePlayerController extends PlayerControllerImpl<YT.Player> {
 	private previousTime?: number;
 
 	private timeUpdateIntervalId?: number;

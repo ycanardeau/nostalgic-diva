@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { IPlayerApi } from '../players';
-import { ILogger, LogLevel } from '../players/ILogger';
+import { IPlayerController } from '../controllers';
+import { ILogger, LogLevel } from '../controllers/ILogger';
 
-interface NostalgicDivaContextProps extends IPlayerApi {
+interface NostalgicDivaContextProps extends IPlayerController {
 	logger: ILogger;
-	playerApiRef: React.MutableRefObject<IPlayerApi | undefined>;
+	controllerRef: React.MutableRefObject<IPlayerController | undefined>;
 }
 
 const NostalgicDivaContext = React.createContext<NostalgicDivaContextProps>(
@@ -60,60 +60,60 @@ export const NostalgicDivaProvider = ({
 	logger = defaultLogger,
 	children,
 }: NostalgicDivaProviderProps): React.ReactElement => {
-	const playerApiRef = React.useRef<IPlayerApi>();
+	const controllerRef = React.useRef<IPlayerController>();
 
 	const loadVideo = React.useCallback(async (id: string) => {
-		await playerApiRef.current?.loadVideo(id);
+		await controllerRef.current?.loadVideo(id);
 	}, []);
 
 	const play = React.useCallback(async () => {
-		await playerApiRef.current?.play();
+		await controllerRef.current?.play();
 	}, []);
 
 	const pause = React.useCallback(async () => {
-		await playerApiRef.current?.pause();
+		await controllerRef.current?.pause();
 	}, []);
 
 	const setCurrentTime = React.useCallback(async (seconds: number) => {
-		const playerApi = playerApiRef.current;
-		if (!playerApi) return;
+		const controller = controllerRef.current;
+		if (!controller) return;
 
-		await playerApi.setCurrentTime(seconds);
-		await playerApi.play();
+		await controller.setCurrentTime(seconds);
+		await controller.play();
 	}, []);
 
 	const setVolume = React.useCallback(async (volume: number) => {
-		await playerApiRef.current?.setVolume(volume);
+		await controllerRef.current?.setVolume(volume);
 	}, []);
 
 	const setMuted = React.useCallback(async (muted: boolean) => {
-		await playerApiRef.current?.setMuted(muted);
+		await controllerRef.current?.setMuted(muted);
 	}, []);
 
 	const setPlaybackRate = React.useCallback(async (playbackRate: number) => {
-		await playerApiRef.current?.setPlaybackRate(playbackRate);
+		await controllerRef.current?.setPlaybackRate(playbackRate);
 	}, []);
 
 	const getDuration = React.useCallback(async () => {
-		return await playerApiRef.current?.getDuration();
+		return await controllerRef.current?.getDuration();
 	}, []);
 
 	const getCurrentTime = React.useCallback(async () => {
-		return await playerApiRef.current?.getCurrentTime();
+		return await controllerRef.current?.getCurrentTime();
 	}, []);
 
 	const getVolume = React.useCallback(async () => {
-		return await playerApiRef.current?.getVolume();
+		return await controllerRef.current?.getVolume();
 	}, []);
 
 	const getPlaybackRate = React.useCallback(async () => {
-		return await playerApiRef.current?.getPlaybackRate();
+		return await controllerRef.current?.getPlaybackRate();
 	}, []);
 
 	const value = React.useMemo(
 		(): NostalgicDivaContextProps => ({
 			logger,
-			playerApiRef,
+			controllerRef: controllerRef,
 			loadVideo,
 			play,
 			pause,

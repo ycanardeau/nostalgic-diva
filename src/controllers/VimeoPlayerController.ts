@@ -1,7 +1,7 @@
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 // https://github.com/cookpete/react-player/blob/e3c324bc6845698179d065fa408db515c2296b4b/src/players/Vimeo.js
-export class VimeoPlayerApi extends PlayerApiImpl<Vimeo.Player> {
+export class VimeoPlayerController extends PlayerControllerImpl<Vimeo.Player> {
 	async attach(): Promise<void> {
 		await this.player.ready();
 

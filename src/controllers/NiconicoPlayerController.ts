@@ -1,5 +1,5 @@
 import { LogLevel } from './ILogger';
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 declare global {
 	interface Window {
@@ -14,7 +14,7 @@ enum PlayerStatus {
 }
 
 // https://github.com/VocaDB/vocadb/blob/a4b5f9d8186772d7e6f58f997bbcbb51509d2539/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerNico.ts.
-export class NiconicoPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
+export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameElement> {
 	private static readonly origin = 'https://embed.nicovideo.jp';
 
 	private duration?: number;
@@ -22,7 +22,7 @@ export class NiconicoPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
 	private volume?: number;
 
 	private handleMessage = (e: nico.PlayerEvent): void => {
-		if (e.origin !== NiconicoPlayerApi.origin) return;
+		if (e.origin !== NiconicoPlayerController.origin) return;
 
 		const data = e.data;
 
@@ -144,7 +144,7 @@ export class NiconicoPlayerApi extends PlayerApiImpl<HTMLIFrameElement> {
 				playerId: '1' /* Needs to be a string, not a number. */,
 				sourceConnectorType: 1,
 			},
-			NiconicoPlayerApi.origin,
+			NiconicoPlayerController.origin,
 		);
 	}
 

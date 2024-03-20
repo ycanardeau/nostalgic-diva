@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { LogLevel } from '../players/ILogger';
-import { NiconicoPlayerApi } from '../players/NiconicoPlayerApi';
+import { LogLevel } from '../controllers/ILogger';
+import { NiconicoPlayerController } from '../controllers/NiconicoPlayerController';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const NiconicoPlayer = React.memo(
@@ -22,13 +22,13 @@ const NiconicoPlayer = React.memo(
 				{...props}
 				loadScript={undefined}
 				playerFactory={playerFactory}
-				playerApiFactory={NiconicoPlayerApi}
+				controllerFactory={NiconicoPlayerController}
 			>
-				{(playerElementRef, videoId): React.ReactElement => (
+				{(elementRef, videoId): React.ReactElement => (
 					<div style={{ width: '100%', height: '100%' }}>
 						{/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
 						<iframe
-							ref={playerElementRef}
+							ref={elementRef}
 							src={`https://embed.nicovideo.jp/watch/${videoId}?jsapi=1&playerId=1`}
 							width="100%"
 							height="100%"

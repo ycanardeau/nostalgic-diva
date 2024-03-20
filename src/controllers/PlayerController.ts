@@ -1,5 +1,5 @@
 import { ILogger, LogLevel } from './ILogger';
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 export enum PlayerType {
 	'Audio' = 'Audio',
@@ -34,7 +34,7 @@ export interface PlayerOptions {
 	onTimeUpdate?(event: TimeEvent): void;
 }
 
-export interface IPlayerApi {
+export interface IPlayerController {
 	loadVideo(id: string): Promise<void>;
 	play(): Promise<void>;
 	pause(): Promise<void>;
@@ -48,28 +48,28 @@ export interface IPlayerApi {
 	getPlaybackRate(): Promise<number | undefined>;
 }
 
-export class PlayerApi<
+export class PlayerController<
 	TPlayer extends object,
-	TPlayerApi extends PlayerApiImpl<TPlayer>,
-> implements IPlayerApi
+	TController extends PlayerControllerImpl<TPlayer>,
+> implements IPlayerController
 {
 	private static nextId = 1;
 
 	private readonly id: number;
-	private impl?: TPlayerApi;
+	private impl?: TController;
 
 	constructor(
 		private readonly logger: ILogger,
 		private readonly type: `${PlayerType}`,
 		private readonly player: TPlayer,
 		private readonly options: PlayerOptions | undefined,
-		private readonly playerApiFactory: new (
+		private readonly controllerFactory: new (
 			logger: ILogger,
 			player: TPlayer,
 			options: PlayerOptions | undefined,
-		) => TPlayerApi,
+		) => TController,
 	) {
-		this.id = PlayerApi.nextId++;
+		this.id = PlayerController.nextId++;
 	}
 
 	private createMessage(message: any): string {
@@ -102,7 +102,7 @@ export class PlayerApi<
 
 		this.debug('Attaching player...');
 
-		this.impl = new this.playerApiFactory(
+		this.impl = new this.controllerFactory(
 			this.logger,
 			this.player,
 			this.options,

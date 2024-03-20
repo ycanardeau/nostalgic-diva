@@ -1,19 +1,21 @@
 import React from 'react';
 
-import { ILogger, LogLevel } from '../players/ILogger';
+import { ILogger, LogLevel } from '../controllers/ILogger';
 import {
-	IPlayerApi,
-	PlayerApi,
+	IPlayerController,
+	PlayerController,
 	PlayerOptions,
 	PlayerType,
-} from '../players/PlayerApi';
-import { PlayerApiImpl } from '../players/PlayerApiImpl';
+} from '../controllers/PlayerController';
+import { PlayerControllerImpl } from '../controllers/PlayerControllerImpl';
 import usePreviousDistinct from './usePreviousDistinct';
 
 export interface PlayerProps {
 	logger: ILogger;
 	type: `${PlayerType}`;
-	playerApiRef: React.MutableRefObject<IPlayerApi | undefined> | undefined;
+	controllerRef:
+		| React.MutableRefObject<IPlayerController | undefined>
+		| undefined;
 	videoId: string;
 	options: PlayerOptions | undefined;
 }
@@ -21,17 +23,17 @@ export interface PlayerProps {
 interface PlayerContainerProps<
 	TElement extends HTMLElement,
 	TPlayer extends object,
-	TPlayerApi extends PlayerApiImpl<TPlayer>,
+	TController extends PlayerControllerImpl<TPlayer>,
 > extends PlayerProps {
 	loadScript: (() => Promise<void>) | undefined;
 	playerFactory: (element: TElement, videoId: string) => Promise<TPlayer>;
-	playerApiFactory: new (
+	controllerFactory: new (
 		logger: ILogger,
 		player: TPlayer,
 		options: PlayerOptions | undefined,
-	) => TPlayerApi;
+	) => TController;
 	children: (
-		playerElementRef: React.MutableRefObject<TElement>,
+		elementRef: React.MutableRefObject<TElement>,
 		videoId: string,
 	) => React.ReactNode;
 }
@@ -39,33 +41,33 @@ interface PlayerContainerProps<
 export const PlayerContainer = <
 	TElement extends HTMLElement,
 	TPlayer extends object,
-	TPlayerApi extends PlayerApiImpl<TPlayer>,
+	TController extends PlayerControllerImpl<TPlayer>,
 >({
 	logger,
 	type,
 	loadScript,
 	playerFactory,
-	playerApiRef,
+	controllerRef,
 	videoId,
 	options,
-	playerApiFactory,
+	controllerFactory,
 	children,
-}: PlayerContainerProps<TElement, TPlayer, TPlayerApi>): React.ReactElement<
-	PlayerContainerProps<TElement, TPlayer, TPlayerApi>
+}: PlayerContainerProps<TElement, TPlayer, TController>): React.ReactElement<
+	PlayerContainerProps<TElement, TPlayer, TController>
 > => {
 	logger.log(LogLevel.Debug, 'PlayerContainer');
 
 	const videoIdRef = React.useRef(videoId);
 
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-	const playerElementRef = React.useRef<TElement>(undefined!);
+	const elementRef = React.useRef<TElement>(undefined!);
 
 	const [player, setPlayer] = React.useState<TPlayer>();
-	const [playerApi, setPlayerApi] = React.useState<IPlayerApi>();
+	const [controller, setController] = React.useState<IPlayerController>();
 
 	React.useEffect(() => {
 		(loadScript?.() ?? Promise.resolve()).then(() => {
-			playerFactory(playerElementRef.current, videoIdRef.current).then(
+			playerFactory(elementRef.current, videoIdRef.current).then(
 				(player) => {
 					setPlayer(player);
 				},
@@ -79,30 +81,30 @@ export const PlayerContainer = <
 			return;
 		}
 
-		const playerApi = new PlayerApi(
+		const controller = new PlayerController(
 			logger,
 			type,
 			player,
 			options,
-			playerApiFactory,
+			controllerFactory,
 		);
 
-		if (playerApiRef) {
-			playerApiRef.current = playerApi;
+		if (controllerRef) {
+			controllerRef.current = controller;
 		}
 
-		playerApi
+		controller
 			.attach(videoIdRef.current)
-			.then(() => setPlayerApi(playerApi));
+			.then(() => setController(controller));
 
 		return (): void => {
-			if (playerApiRef) {
-				if (playerApi !== playerApiRef.current) {
-					throw new Error('playerApi differs');
+			if (controllerRef) {
+				if (controller !== controllerRef.current) {
+					throw new Error('controller differs');
 				}
 			}
 
-			playerApi.detach().finally(() => setPlayerApi(undefined));
+			controller.detach().finally(() => setController(undefined));
 		};
 	}, [
 		logger,
@@ -110,8 +112,8 @@ export const PlayerContainer = <
 		loadScript,
 		player,
 		options,
-		playerApiFactory,
-		playerApiRef,
+		controllerFactory,
+		controllerRef,
 	]);
 
 	const previousVideoId = usePreviousDistinct(videoId);
@@ -124,9 +126,9 @@ export const PlayerContainer = <
 			return;
 		}
 
-		playerApi?.loadVideo(videoId);
-	}, [previousVideoId, videoId, playerApi]);
+		controller?.loadVideo(videoId);
+	}, [previousVideoId, videoId, controller]);
 
 	// Make sure that `videoId` does not change between re-rendering.
-	return <>{children(playerElementRef, videoIdRef.current)}</>;
+	return <>{children(elementRef, videoIdRef.current)}</>;
 };

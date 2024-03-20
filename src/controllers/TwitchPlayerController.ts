@@ -1,6 +1,6 @@
-import { PlayerApiImpl } from './PlayerApiImpl';
+import { PlayerControllerImpl } from './PlayerControllerImpl';
 
-export class TwitchPlayerApi extends PlayerApiImpl<Twitch.Player> {
+export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> {
 	private handleReady = (): void => {
 		this.options?.onLoaded?.({ id: this.player.getVideo() });
 	};

@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { LogLevel } from '../players/ILogger';
-import { TwitchPlayerApi } from '../players/TwitchPlayerApi';
-import { ensureScriptLoaded } from '../players/ensureScriptLoaded';
+import { LogLevel } from '../controllers/ILogger';
+import { TwitchPlayerController } from '../controllers/TwitchPlayerController';
+import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const TwitchPlayer = React.memo(
@@ -39,11 +39,11 @@ const TwitchPlayer = React.memo(
 				{...props}
 				loadScript={loadScript}
 				playerFactory={playerFactory}
-				playerApiFactory={TwitchPlayerApi}
+				controllerFactory={TwitchPlayerController}
 			>
-				{(playerElementRef): React.ReactElement => (
+				{(elementRef): React.ReactElement => (
 					<div
-						ref={playerElementRef}
+						ref={elementRef}
 						style={{ width: '100%', height: '100%' }}
 					/>
 				)}

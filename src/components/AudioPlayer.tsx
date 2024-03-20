@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { AudioPlayerApi } from '../players/AudioPlayerApi';
-import { LogLevel } from '../players/ILogger';
+import { AudioPlayerController } from '../controllers/AudioPlayerController';
+import { LogLevel } from '../controllers/ILogger';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const AudioPlayer = React.memo(
@@ -22,11 +22,11 @@ const AudioPlayer = React.memo(
 				{...props}
 				loadScript={undefined}
 				playerFactory={playerFactory}
-				playerApiFactory={AudioPlayerApi}
+				controllerFactory={AudioPlayerController}
 			>
-				{(playerElementRef, videoId): React.ReactElement => (
+				{(elementRef, videoId): React.ReactElement => (
 					<audio
-						ref={playerElementRef}
+						ref={elementRef}
 						src={videoId}
 						style={{ width: '100%', height: '100%' }}
 						preload="auto"
