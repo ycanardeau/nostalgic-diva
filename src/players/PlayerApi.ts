@@ -1,14 +1,19 @@
 import { ILogger, LogLevel } from './ILogger';
 import { PlayerApiImpl } from './PlayerApiImpl';
 
-export type PlayerType =
-	| 'Audio'
-	| 'Dailymotion'
-	| 'Niconico'
-	| 'SoundCloud'
-	| 'Twitch'
-	| 'Vimeo'
-	| 'YouTube';
+export enum PlayerType {
+	'Audio' = 'Audio',
+	'Dailymotion' = 'Dailymotion',
+	'Niconico' = 'Niconico',
+	'SoundCloud' = 'SoundCloud',
+	'Twitch' = 'Twitch',
+	'Vimeo' = 'Vimeo',
+	'YouTube' = 'YouTube',
+}
+
+export function validatePlayerType(value: string): value is PlayerType {
+	return PlayerType[value as keyof typeof PlayerType] !== undefined;
+}
 
 export interface LoadedEvent {
 	id: string;
@@ -55,7 +60,7 @@ export class PlayerApi<
 
 	constructor(
 		private readonly logger: ILogger,
-		private readonly type: PlayerType,
+		private readonly type: `${PlayerType}`,
 		private readonly player: TPlayer,
 		private readonly options: PlayerOptions | undefined,
 		private readonly playerApiFactory: new (

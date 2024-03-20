@@ -24,7 +24,7 @@ const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
 };
 
 export interface NostalgicDivaProps {
-	type: PlayerType;
+	type: `${PlayerType}`;
 	videoId: string;
 	options?: PlayerOptions;
 }

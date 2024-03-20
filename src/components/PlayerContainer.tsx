@@ -12,7 +12,7 @@ import usePreviousDistinct from './usePreviousDistinct';
 
 export interface PlayerProps {
 	logger: ILogger;
-	type: PlayerType;
+	type: `${PlayerType}`;
 	playerApiRef: React.MutableRefObject<IPlayerApi | undefined> | undefined;
 	videoId: string;
 	options: PlayerOptions | undefined;
