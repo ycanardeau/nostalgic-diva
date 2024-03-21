@@ -1,4 +1,4 @@
-import { LogLevel } from './ILogger';
+import { LogLevel } from './Logger';
 import { PlayerControllerImpl } from './PlayerControllerImpl';
 
 declare global {

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { AudioPlayerController } from '../controllers/AudioPlayerController';
-import { LogLevel } from '../controllers/ILogger';
+import { LogLevel } from '../controllers/Logger';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
 const AudioPlayer = React.memo(

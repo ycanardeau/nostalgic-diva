@@ -1,4 +1,4 @@
-import { ILogger, LogLevel } from './ILogger';
+import { ILogger, LogLevel } from './Logger';
 import { IPlayerController, PlayerOptions } from './PlayerController';
 
 export abstract class PlayerControllerImpl<TPlayer>

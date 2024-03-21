@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ILogger, LogLevel } from '../controllers/ILogger';
+import { ILogger, LogLevel } from '../controllers/Logger';
 import {
 	IPlayerController,
 	PlayerController,

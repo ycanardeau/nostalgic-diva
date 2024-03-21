@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LogLevel } from '../controllers/ILogger';
+import { LogLevel } from '../controllers/Logger';
 import { SoundCloudPlayerController } from '../controllers/SoundCloudPlayerController';
 import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { IPlayerController } from '../controllers';
-import { ILogger, LogLevel } from '../controllers/ILogger';
+import { ILogger, Logger } from '../controllers/Logger';
 
 interface NostalgicDivaContextProps extends IPlayerController {
 	logger: ILogger;
@@ -18,43 +18,7 @@ interface NostalgicDivaProviderProps {
 	children?: React.ReactNode;
 }
 
-const defaultLogger = new (class implements ILogger {
-	private readonly title = 'nostalgic-diva';
-
-	private createMessage(message: any): string {
-		return `[${this.title}] ${message}`;
-	}
-
-	private debug(message?: any, ...optionalParams: any): void {
-		console.debug(this.createMessage(message), ...optionalParams);
-	}
-
-	private error(message?: any, ...optionalParams: any): void {
-		console.error(this.createMessage(message), ...optionalParams);
-	}
-
-	private warn(message?: any, ...optionalParams: any): void {
-		console.warn(this.createMessage(message), ...optionalParams);
-	}
-
-	isEnabled(): boolean {
-		return true;
-	}
-
-	log(logLevel: LogLevel, message?: any, ...optionalParams: any[]): void {
-		switch (logLevel) {
-			case LogLevel.Debug:
-				this.debug(message, ...optionalParams);
-				break;
-			case LogLevel.Warning:
-				this.warn(message, ...optionalParams);
-				break;
-			case LogLevel.Error:
-				this.error(message, ...optionalParams);
-				break;
-		}
-	}
-})();
+const defaultLogger = new Logger();
 
 export const NostalgicDivaProvider = ({
 	logger = defaultLogger,

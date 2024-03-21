@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { DailymotionPlayerController } from '../controllers/DailymotionPlayerController';
-import { LogLevel } from '../controllers/ILogger';
+import { LogLevel } from '../controllers/Logger';
 import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 

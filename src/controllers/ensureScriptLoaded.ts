@@ -1,4 +1,4 @@
-import { ILogger, LogLevel } from './ILogger';
+import { ILogger, LogLevel } from './Logger';
 import { getScript } from './getScript';
 
 const urls: string[] = [];

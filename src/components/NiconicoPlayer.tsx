@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LogLevel } from '../controllers/ILogger';
+import { LogLevel } from '../controllers/Logger';
 import { NiconicoPlayerController } from '../controllers/NiconicoPlayerController';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
