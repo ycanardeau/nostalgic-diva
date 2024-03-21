@@ -12,7 +12,7 @@ import usePreviousDistinct from './usePreviousDistinct';
 
 export interface PlayerProps {
 	logger: ILogger;
-	type: `${PlayerType}`;
+	type: PlayerType;
 	onControllerChange:
 		| ((value: IPlayerController | undefined) => void)
 		| undefined;

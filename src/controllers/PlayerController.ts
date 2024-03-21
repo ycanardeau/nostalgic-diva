@@ -60,7 +60,7 @@ export class PlayerController<
 
 	constructor(
 		private readonly logger: ILogger,
-		private readonly type: `${PlayerType}`,
+		private readonly type: PlayerType,
 		private readonly player: TPlayer,
 		private readonly options: PlayerOptions | undefined,
 		private readonly controllerFactory: new (
