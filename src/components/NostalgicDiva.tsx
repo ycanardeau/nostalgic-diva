@@ -9,22 +9,14 @@ import {
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
 
-const AudioPlayer = React.lazy(() => import('./AudioPlayer'));
-const DailymotionPlayer = React.lazy(() => import('./DailymotionPlayer'));
-const NiconicoPlayer = React.lazy(() => import('./NiconicoPlayer'));
-const SoundCloudPlayer = React.lazy(() => import('./SoundCloudPlayer'));
-const TwitchPlayer = React.lazy(() => import('./TwitchPlayer'));
-const VimeoPlayer = React.lazy(() => import('./VimeoPlayer'));
-const YouTubePlayer = React.lazy(() => import('./YouTubePlayer'));
-
 const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
-	Audio: AudioPlayer,
-	Dailymotion: DailymotionPlayer,
-	Niconico: NiconicoPlayer,
-	SoundCloud: SoundCloudPlayer,
-	Twitch: TwitchPlayer,
-	Vimeo: VimeoPlayer,
-	YouTube: YouTubePlayer,
+	Audio: React.lazy(() => import('./AudioPlayer')),
+	Dailymotion: React.lazy(() => import('./DailymotionPlayer')),
+	Niconico: React.lazy(() => import('./NiconicoPlayer')),
+	SoundCloud: React.lazy(() => import('./SoundCloudPlayer')),
+	Twitch: React.lazy(() => import('./TwitchPlayer')),
+	Vimeo: React.lazy(() => import('./VimeoPlayer')),
+	YouTube: React.lazy(() => import('./YouTubePlayer')),
 };
 
 export interface NostalgicDivaProps {
