@@ -13,7 +13,9 @@ import usePreviousDistinct from './usePreviousDistinct';
 export interface PlayerProps {
 	logger: ILogger;
 	type: `${PlayerType}`;
-	onControllerChange: (value: IPlayerController | undefined) => void;
+	onControllerChange:
+		| ((value: IPlayerController | undefined) => void)
+		| undefined;
 	videoId: string;
 	options: PlayerOptions | undefined;
 }
@@ -64,7 +66,7 @@ export const PlayerContainer = <
 
 	const [controller, setController] = React.useState<IPlayerController>();
 	React.useEffect(() => {
-		onControllerChange(controller);
+		onControllerChange?.(controller);
 	}, [controller, onControllerChange]);
 
 	React.useEffect(() => {

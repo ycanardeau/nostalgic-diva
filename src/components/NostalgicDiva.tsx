@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LogLevel } from '../controllers/Logger';
+import { ILogger, LogLevel, Logger } from '../controllers/Logger';
 import {
 	IPlayerController,
 	PlayerOptions,
@@ -31,28 +31,32 @@ export interface NostalgicDivaProps {
 	type: `${PlayerType}`;
 	videoId: string;
 	options?: PlayerOptions;
+	logger?: ILogger;
 	onControllerChange?: (value: IPlayerController | undefined) => void;
 }
+
+export const defaultLogger = new Logger();
 
 export const NostalgicDiva = React.memo(
 	({
 		type,
 		videoId,
 		options,
+		logger = defaultLogger,
 		onControllerChange,
 	}: NostalgicDivaProps): React.ReactElement => {
-		const { logger, controllerRef } = useNostalgicDiva();
-
-		logger.log(LogLevel.Debug, 'NostalgicDiva');
+		// useNostalgicDiva may return undefined if NostalgicDiva is used without NostalgicDivaProvider.
+		const diva = useNostalgicDiva() as
+			| ReturnType<typeof useNostalgicDiva>
+			| undefined;
 
 		const handleControllerChange = React.useCallback(
-			(value: IPlayerController | undefined) => {
-				controllerRef.current = value;
-
-				onControllerChange?.(value);
-			},
-			[controllerRef, onControllerChange],
+			(value: IPlayerController | undefined) =>
+				(onControllerChange ?? diva?.handleControllerChange)?.(value),
+			[diva?.handleControllerChange, onControllerChange],
 		);
+
+		logger.log(LogLevel.Debug, 'NostalgicDiva');
 
 		const Player = players[type];
 		return (

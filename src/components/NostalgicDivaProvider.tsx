@@ -1,11 +1,9 @@
 import React from 'react';
 
 import { IPlayerController } from '../controllers';
-import { ILogger, Logger } from '../controllers/Logger';
 
 interface NostalgicDivaContextProps extends IPlayerController {
-	logger: ILogger;
-	controllerRef: React.MutableRefObject<IPlayerController | undefined>;
+	handleControllerChange: (value: IPlayerController | undefined) => void;
 }
 
 const NostalgicDivaContext = React.createContext<NostalgicDivaContextProps>(
@@ -14,17 +12,20 @@ const NostalgicDivaContext = React.createContext<NostalgicDivaContextProps>(
 );
 
 interface NostalgicDivaProviderProps {
-	logger?: ILogger;
 	children?: React.ReactNode;
 }
 
-const defaultLogger = new Logger();
-
 export const NostalgicDivaProvider = ({
-	logger = defaultLogger,
 	children,
 }: NostalgicDivaProviderProps): React.ReactElement => {
 	const controllerRef = React.useRef<IPlayerController>();
+
+	const handleControllerChange = React.useCallback(
+		(value: IPlayerController | undefined) => {
+			controllerRef.current = value;
+		},
+		[],
+	);
 
 	const loadVideo = React.useCallback(async (id: string) => {
 		await controllerRef.current?.loadVideo(id);
@@ -76,8 +77,7 @@ export const NostalgicDivaProvider = ({
 
 	const value = React.useMemo(
 		(): NostalgicDivaContextProps => ({
-			logger,
-			controllerRef: controllerRef,
+			handleControllerChange,
 			loadVideo,
 			play,
 			pause,
@@ -91,7 +91,7 @@ export const NostalgicDivaProvider = ({
 			getPlaybackRate,
 		}),
 		[
-			logger,
+			handleControllerChange,
 			loadVideo,
 			play,
 			pause,
