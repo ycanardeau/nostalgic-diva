@@ -6,6 +6,7 @@ import {
 	PlayerOptions,
 	PlayerType,
 } from '../controllers/PlayerController';
+import { findVideoService } from '../services/findVideoService';
 import { useNostalgicDiva } from './NostalgicDivaProvider';
 import { PlayerProps } from './PlayerContainer';
 
@@ -20,19 +21,35 @@ const players: Record<PlayerType, React.ElementType<PlayerProps>> = {
 };
 
 export interface NostalgicDivaProps {
-	type: PlayerType;
-	videoId: string;
+	src: string;
 	options?: PlayerOptions;
 	logger?: ILogger;
 	onControllerChange?: (value: IPlayerController | undefined) => void;
 }
 
-export const defaultLogger = new Logger();
+const defaultLogger = new Logger();
+
+function getTypeAndVideoId(
+	url: string,
+): { type: PlayerType; videoId: string } | undefined {
+	const videoService = findVideoService(url);
+	if (videoService === undefined) {
+		return undefined;
+	}
+
+	const { type, extractVideoId } = videoService;
+
+	const videoId = extractVideoId(url);
+	if (videoId === undefined) {
+		return undefined;
+	}
+
+	return { type: type, videoId: videoId };
+}
 
 export const NostalgicDiva = React.memo(
 	({
-		type,
-		videoId,
+		src,
 		options,
 		logger = defaultLogger,
 		onControllerChange,
@@ -50,7 +67,27 @@ export const NostalgicDiva = React.memo(
 
 		logger.log(LogLevel.Debug, 'NostalgicDiva');
 
+		const typeAndVideoId = getTypeAndVideoId(src);
+		if (typeAndVideoId === undefined) {
+			return (
+				<div style={{ width: '100%', height: '100%' }}>
+					<iframe
+						src="about:blank"
+						title="about:blank"
+						style={{
+							width: '100%',
+							height: '100%',
+							border: 0,
+						}}
+					/>
+				</div>
+			);
+		}
+
+		const { type, videoId } = typeAndVideoId;
+
 		const Player = players[type];
+
 		return (
 			<React.Suspense fallback={null}>
 				<Player
