@@ -46,8 +46,7 @@ const options = React.useMemo(
 		// - "SoundCloud"
 		// - "Vimeo"
 		// - "YouTube"
-		type="Audio"
-		videoId={videoId}
+		src="https://www.youtube.com/watch?v=bGdtvUQ9OAs"
 		options={options}
 	/>
 	;
@@ -73,6 +72,18 @@ await diva.setMuted(false);
 
 // Seek
 await diva.setCurrentTime(seconds);
+```
+
+or by using a [Web Component](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components)
+
+```ts
+import { defineNostalgicDiva } from '@aigamo/nostalgic-diva';
+
+defineNostalgicDiva();
+```
+
+```html
+<nostalgic-diva src="https://www.youtube.com/watch?v=bGdtvUQ9OAs" />
 ```
 
 ## Imperative functions
@@ -125,3 +136,5 @@ The `attach` function is called when switching from another player (Audio, Nicon
 -   [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 -   [dailymotion/dailymotion-sdk-js: Dailymotion JavaScript client API](https://github.com/dailymotion/dailymotion-sdk-js)
 -   [Video &amp; Clips | Twitch Developers](https://dev.twitch.tv/docs/embed/video-and-clips/)
+-   [bitovi/react-to-web-component: Convert react components to native Web Components. Works with Preact too!](https://github.com/bitovi/react-to-web-component)
+-   [Using custom elements - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components/Using_custom_elements)
