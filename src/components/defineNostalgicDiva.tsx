@@ -48,6 +48,10 @@ export class NostalgicDivaElement
 		const handleControllerChange = (
 			value: IPlayerController | undefined,
 		): void => {
+			console.debug(
+				'[@nostalgic-diva/web-components] handleControllerChange',
+			);
+
 			this.controller = value;
 		};
 
@@ -62,17 +66,19 @@ export class NostalgicDivaElement
 	}
 
 	connectedCallback(): void {
-		console.debug('[@nostalgic-diva/web-components] connected');
+		console.debug('[@nostalgic-diva/web-components] connectedCallback');
 
 		this.#render();
 	}
 
 	disconnectedCallback(): void {
-		console.debug('[@nostalgic-diva/web-components] disconnected');
+		console.debug('[@nostalgic-diva/web-components] disconnectedCallback');
 	}
 
 	attributeChangedCallback(): void {
-		console.debug('[@nostalgic-diva/web-components] attributeChanged');
+		console.debug(
+			'[@nostalgic-diva/web-components] attributeChangedCallback',
+		);
 
 		this.#render();
 	}
