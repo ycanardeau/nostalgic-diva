@@ -30,36 +30,32 @@ export class NostalgicDivaElement
 		this.setAttribute('src', value);
 	}
 
+	readonly #options: PlayerOptions = {
+		onError: (e) =>
+			this.dispatchEvent(new CustomEvent('error', { detail: e })),
+		onLoaded: (e) =>
+			this.dispatchEvent(new CustomEvent('loaded', { detail: e })),
+		onPlay: () => this.dispatchEvent(new CustomEvent('play')),
+		onPause: () => this.dispatchEvent(new CustomEvent('pause')),
+		onEnded: () => this.dispatchEvent(new CustomEvent('ended')),
+		onTimeUpdate: (e) =>
+			this.dispatchEvent(new CustomEvent('timeupdate', { detail: e })),
+	};
+
+	#handleControllerChange = (value: IPlayerController | undefined): void => {
+		console.debug(
+			'[@nostalgic-diva/web-components] handleControllerChange',
+		);
+
+		this.controller = value;
+	};
+
 	#render(): void {
-		const options: PlayerOptions = {
-			onError: (e) =>
-				this.dispatchEvent(new CustomEvent('error', { detail: e })),
-			onLoaded: (e) =>
-				this.dispatchEvent(new CustomEvent('loaded', { detail: e })),
-			onPlay: () => this.dispatchEvent(new CustomEvent('play')),
-			onPause: () => this.dispatchEvent(new CustomEvent('pause')),
-			onEnded: () => this.dispatchEvent(new CustomEvent('ended')),
-			onTimeUpdate: (e) =>
-				this.dispatchEvent(
-					new CustomEvent('timeupdate', { detail: e }),
-				),
-		};
-
-		const handleControllerChange = (
-			value: IPlayerController | undefined,
-		): void => {
-			console.debug(
-				'[@nostalgic-diva/web-components] handleControllerChange',
-			);
-
-			this.controller = value;
-		};
-
 		ReactDOM.render(
 			<NostalgicDiva
 				src={this.src}
-				options={options}
-				onControllerChange={handleControllerChange}
+				options={this.#options}
+				onControllerChange={this.#handleControllerChange}
 			/>,
 			this.container,
 		);
