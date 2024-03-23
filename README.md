@@ -83,7 +83,38 @@ defineNostalgicDiva();
 ```
 
 ```html
-<nostalgic-diva src="https://www.youtube.com/watch?v=bGdtvUQ9OAs" />
+<nostalgic-diva
+	src="https://www.youtube.com/watch?v=bGdtvUQ9OAs"
+	id="nostalgic-diva"
+/>
+```
+
+```ts
+import { NostalgicDivaElement } from '@aigamo/nostalgic-diva';
+
+const diva = document.querySelector<NostalgicDivaElement>('#nostalgic-diva');
+
+// Event listeners
+diva.addEventListener('error', (e) => {});
+diva.addEventListener('play', (e) => {});
+diva.addEventListener('pause', (e) => {});
+diva.addEventListener('ended', (e) => {});
+diva.addEventListener('timeupdate', (e) => {});
+
+// Play
+await diva.play();
+
+// Pause
+await diva.pause();
+
+// Mute
+await diva.setMuted(true);
+
+// Unmute
+await diva.setMuted(false);
+
+// Seek
+await diva.setCurrentTime(seconds);
 ```
 
 ## Imperative functions
