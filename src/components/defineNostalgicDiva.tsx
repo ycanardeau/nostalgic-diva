@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { IPlayerController } from '../controllers/PlayerController';
+import {
+	IPlayerController,
+	PlayerOptions,
+} from '../controllers/PlayerController';
 import { NostalgicDiva } from './NostalgicDiva';
 
 export class NostalgicDivaElement
@@ -28,12 +31,31 @@ export class NostalgicDivaElement
 	}
 
 	#render(): void {
+		const options: PlayerOptions = {
+			onError: (e) =>
+				this.dispatchEvent(new CustomEvent('error', { detail: e })),
+			onLoaded: (e) =>
+				this.dispatchEvent(new CustomEvent('loaded', { detail: e })),
+			onPlay: () => this.dispatchEvent(new CustomEvent('play')),
+			onPause: () => this.dispatchEvent(new CustomEvent('pause')),
+			onEnded: () => this.dispatchEvent(new CustomEvent('ended')),
+			onTimeUpdate: (e) =>
+				this.dispatchEvent(
+					new CustomEvent('timeupdate', { detail: e }),
+				),
+		};
+
+		const handleControllerChange = (
+			value: IPlayerController | undefined,
+		): void => {
+			this.controller = value;
+		};
+
 		ReactDOM.render(
 			<NostalgicDiva
 				src={this.src}
-				onControllerChange={(value): void => {
-					this.controller = value;
-				}}
+				options={options}
+				onControllerChange={handleControllerChange}
 			/>,
 			this.container,
 		);
