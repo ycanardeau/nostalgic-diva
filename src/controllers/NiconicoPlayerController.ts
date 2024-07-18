@@ -1,12 +1,6 @@
 import { LogLevel } from '@/controllers/Logger';
 import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
-declare global {
-	interface Window {
-		onNicoPlayerFactoryReady: (callback: nico.NicoPlayerFactory) => void;
-	}
-}
-
 enum PlayerStatus {
 	Play = 2,
 	Pause = 3,
