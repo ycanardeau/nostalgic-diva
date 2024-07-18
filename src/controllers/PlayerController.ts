@@ -6,6 +6,7 @@ export enum PlayerType {
 	'Dailymotion' = 'Dailymotion',
 	'Niconico' = 'Niconico',
 	'SoundCloud' = 'SoundCloud',
+	'Spotify' = 'Spotify',
 	'Twitch' = 'Twitch',
 	'Vimeo' = 'Vimeo',
 	'YouTube' = 'YouTube',

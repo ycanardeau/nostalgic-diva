@@ -1,6 +1,6 @@
 # Nostalgic Diva
 
-React function components for imperatively controlling embedded players (audio, [Dailymotion](https://www.dailymotion.com/), [Niconico](https://www.nicovideo.jp/), [SoundCloud](https://soundcloud.com/), [Twitch](https://www.twitch.tv/), [Vimeo](https://vimeo.com/) and [YouTube](https://www.youtube.com/)) using refs.
+React function components for imperatively controlling embedded players (audio, [Dailymotion](https://www.dailymotion.com/), [Niconico](https://www.nicovideo.jp/), [SoundCloud](https://soundcloud.com/), [Spotify](https://open.spotify.com/), [Twitch](https://www.twitch.tv/), [Vimeo](https://vimeo.com/) and [YouTube](https://www.youtube.com/)) using refs.
 
 This was originally developed in [VocaDB/vocadb#1101](https://github.com/VocaDB/vocadb/pull/1101) as a part of VocaDB.
 
@@ -44,6 +44,7 @@ const options = useMemo(
 		// - "Audio"
 		// - "Niconico"
 		// - "SoundCloud"
+		// - "Spotify"
 		// - "Vimeo"
 		// - "YouTube"
 		src="https://www.youtube.com/watch?v=bGdtvUQ9OAs"
@@ -169,3 +170,4 @@ The `attach` function is called when switching from another player (Audio, Nicon
 -   [Video &amp; Clips | Twitch Developers](https://dev.twitch.tv/docs/embed/video-and-clips/)
 -   [bitovi/react-to-web-component: Convert react components to native Web Components. Works with Preact too!](https://github.com/bitovi/react-to-web-component)
 -   [Using custom elements - Web APIs | MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components/Using_custom_elements)
+-   [Using the iFrame API | Spotify for Developers](https://developer.spotify.com/documentation/embeds/tutorials/using-the-iframe-api)

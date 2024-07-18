@@ -6,10 +6,10 @@ const urls: string[] = [];
 export async function ensureScriptLoaded(
 	url: string,
 	logger: ILogger,
-): Promise<boolean> {
+): Promise<{ first: boolean }> {
 	if (urls.includes(url)) {
 		logger.log(LogLevel.Debug, url, 'script is already loaded');
-		return false;
+		return { first: false };
 	}
 
 	try {
@@ -19,11 +19,11 @@ export async function ensureScriptLoaded(
 
 		if (urls.includes(url)) {
 			logger.log(LogLevel.Debug, url, 'script is already loaded');
-			return false;
+			return { first: false };
 		} else {
 			urls.push(url);
 			logger.log(LogLevel.Debug, url, 'script loaded');
-			return true;
+			return { first: true };
 		}
 	} catch (error) {
 		logger.log(LogLevel.Error, url, 'Failed to load script');

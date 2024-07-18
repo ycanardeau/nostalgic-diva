@@ -11,6 +11,8 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 	attach(id: string): Promise<void> {
 		return new Promise((resolve, reject /* TODO: reject */) => {
 			this.player.bind(SC.Widget.Events.READY, () => {
+				this.player.unbind(SC.Widget.Events.READY);
+
 				this.player.bind(
 					SC.Widget.Events.PLAY_PROGRESS,
 					async (event) => {
@@ -43,7 +45,6 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 	}
 
 	async detach(): Promise<void> {
-		this.player.unbind(SC.Widget.Events.READY);
 		this.player.unbind(SC.Widget.Events.PLAY_PROGRESS);
 		this.player.unbind(SC.Widget.Events.ERROR);
 		this.player.unbind(SC.Widget.Events.PLAY);

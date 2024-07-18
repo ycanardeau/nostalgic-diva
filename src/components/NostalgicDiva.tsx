@@ -21,6 +21,7 @@ const players: Record<PlayerType, ElementType<PlayerProps>> = {
 	Dailymotion: lazy(() => import('./DailymotionPlayer')),
 	Niconico: lazy(() => import('./NiconicoPlayer')),
 	SoundCloud: lazy(() => import('./SoundCloudPlayer')),
+	Spotify: lazy(() => import('./SpotifyPlayer')),
 	Twitch: lazy(() => import('./TwitchPlayer')),
 	Vimeo: lazy(() => import('./VimeoPlayer')),
 	YouTube: lazy(() => import('./YouTubePlayer')),
