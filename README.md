@@ -20,14 +20,14 @@ import {
 } from '@aigamo/nostalgic-diva';
 
 // Callbacks
-const handleError = React.useCallback(() => {}, []);
-const handlePlay = React.useCallback(() => {}, []);
-const handlePause = React.useCallback(() => {}, []);
-const handleEnded = React.useCallback(() => {}, []);
-const handleTimeUpdate = React.useCallback(() => {}, []);
+const handleError = useCallback(() => {}, []);
+const handlePlay = useCallback(() => {}, []);
+const handlePause = useCallback(() => {}, []);
+const handleEnded = useCallback(() => {}, []);
+const handleTimeUpdate = useCallback(() => {}, []);
 
 // Options
-const options = React.useMemo(
+const options = useMemo(
 	(): PlayerOptions => ({
 		onError: handleError,
 		onPlay: handlePlay,

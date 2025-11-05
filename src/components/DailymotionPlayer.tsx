@@ -1,21 +1,21 @@
-import React from 'react';
+import React, { ReactElement, memo, useCallback } from 'react';
 
 import { DailymotionPlayerController } from '../controllers/DailymotionPlayerController';
 import { LogLevel } from '../controllers/Logger';
 import { ensureScriptLoaded } from '../controllers/ensureScriptLoaded';
 import { PlayerContainer, PlayerProps } from './PlayerContainer';
 
-const DailymotionPlayer = React.memo(
-	({ options, ...props }: PlayerProps): React.ReactElement => {
+const DailymotionPlayer = memo(
+	({ options, ...props }: PlayerProps): ReactElement => {
 		const { logger } = props;
 
 		logger.log(LogLevel.Debug, 'DailymotionPlayer');
 
-		const loadScript = React.useCallback(async () => {
+		const loadScript = useCallback(async () => {
 			await ensureScriptLoaded('https://api.dmcdn.net/all.js', logger);
 		}, [logger]);
 
-		const playerFactory = React.useCallback(
+		const playerFactory = useCallback(
 			(element: HTMLDivElement, videoId: string): Promise<DM.player> => {
 				return Promise.resolve(
 					new DM.player(element, {
@@ -62,7 +62,7 @@ const DailymotionPlayer = React.memo(
 				playerFactory={playerFactory}
 				controllerFactory={DailymotionPlayerController}
 			>
-				{(elementRef): React.ReactElement => (
+				{(elementRef): ReactElement => (
 					<div style={{ width: '100%', height: '100%' }}>
 						<div ref={elementRef} />
 					</div>

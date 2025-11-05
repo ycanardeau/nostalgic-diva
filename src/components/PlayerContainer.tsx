@@ -1,4 +1,11 @@
-import React from 'react';
+import React, {
+	MutableRefObject,
+	ReactElement,
+	ReactNode,
+	useEffect,
+	useRef,
+	useState,
+} from 'react';
 
 import { ILogger, LogLevel } from '../controllers/Logger';
 import {
@@ -33,9 +40,9 @@ interface PlayerContainerProps<
 		options: PlayerOptions | undefined,
 	) => TController;
 	children: (
-		elementRef: React.MutableRefObject<TElement>,
+		elementRef: MutableRefObject<TElement>,
 		videoId: string,
-	) => React.ReactNode;
+	) => ReactNode;
 }
 
 export const PlayerContainer = <
@@ -52,24 +59,24 @@ export const PlayerContainer = <
 	options,
 	controllerFactory,
 	children,
-}: PlayerContainerProps<TElement, TPlayer, TController>): React.ReactElement<
+}: PlayerContainerProps<TElement, TPlayer, TController>): ReactElement<
 	PlayerContainerProps<TElement, TPlayer, TController>
 > => {
 	logger.log(LogLevel.Debug, 'PlayerContainer');
 
-	const videoIdRef = React.useRef(videoId);
+	const videoIdRef = useRef(videoId);
 
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-	const elementRef = React.useRef<TElement>(undefined!);
+	const elementRef = useRef<TElement>(undefined!);
 
-	const [player, setPlayer] = React.useState<TPlayer>();
+	const [player, setPlayer] = useState<TPlayer>();
 
-	const [controller, setController] = React.useState<IPlayerController>();
-	React.useEffect(() => {
+	const [controller, setController] = useState<IPlayerController>();
+	useEffect(() => {
 		onControllerChange?.(controller);
 	}, [controller, onControllerChange]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		(loadScript?.() ?? Promise.resolve()).then(() => {
 			playerFactory(elementRef.current, videoIdRef.current).then(
 				(player) => {
@@ -80,7 +87,7 @@ export const PlayerContainer = <
 	}, [loadScript, playerFactory]);
 
 	// Make sure that `options` do not change between re-rendering.
-	React.useEffect(() => {
+	useEffect(() => {
 		if (player === undefined) {
 			return;
 		}
@@ -103,7 +110,7 @@ export const PlayerContainer = <
 	}, [logger, type, loadScript, player, options, controllerFactory]);
 
 	const previousVideoId = usePreviousDistinct(videoId);
-	React.useEffect(() => {
+	useEffect(() => {
 		// If `previousVideoId` is undefined, then it means that the video has already been loaded by either
 		// 1. `<audio>`s `src` attribute (e.g. `AudioPlayer`),
 		// 2. `<iframe>`'s `src` attribute (e.g. `NiconicoPlayer`, `SoundCloudPlayer` and `VimeoPlayer`), or

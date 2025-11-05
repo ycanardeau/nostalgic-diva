@@ -1,4 +1,12 @@
-import React from 'react';
+import React, {
+	ReactElement,
+	ReactNode,
+	createContext,
+	useCallback,
+	useContext,
+	useMemo,
+	useRef,
+} from 'react';
 
 import { IPlayerController } from '../controllers';
 
@@ -6,40 +14,40 @@ interface NostalgicDivaContextProps extends IPlayerController {
 	handleControllerChange: (value: IPlayerController | undefined) => void;
 }
 
-const NostalgicDivaContext = React.createContext<NostalgicDivaContextProps>(
+const NostalgicDivaContext = createContext<NostalgicDivaContextProps>(
 	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	undefined!,
 );
 
 interface NostalgicDivaProviderProps {
-	children?: React.ReactNode;
+	children?: ReactNode;
 }
 
 export const NostalgicDivaProvider = ({
 	children,
-}: NostalgicDivaProviderProps): React.ReactElement => {
-	const controllerRef = React.useRef<IPlayerController>();
+}: NostalgicDivaProviderProps): ReactElement => {
+	const controllerRef = useRef<IPlayerController>();
 
-	const handleControllerChange = React.useCallback(
+	const handleControllerChange = useCallback(
 		(value: IPlayerController | undefined) => {
 			controllerRef.current = value;
 		},
 		[],
 	);
 
-	const loadVideo = React.useCallback(async (id: string) => {
+	const loadVideo = useCallback(async (id: string) => {
 		await controllerRef.current?.loadVideo(id);
 	}, []);
 
-	const play = React.useCallback(async () => {
+	const play = useCallback(async () => {
 		await controllerRef.current?.play();
 	}, []);
 
-	const pause = React.useCallback(async () => {
+	const pause = useCallback(async () => {
 		await controllerRef.current?.pause();
 	}, []);
 
-	const setCurrentTime = React.useCallback(async (seconds: number) => {
+	const setCurrentTime = useCallback(async (seconds: number) => {
 		const controller = controllerRef.current;
 		if (!controller) return;
 
@@ -47,35 +55,35 @@ export const NostalgicDivaProvider = ({
 		await controller.play();
 	}, []);
 
-	const setVolume = React.useCallback(async (volume: number) => {
+	const setVolume = useCallback(async (volume: number) => {
 		await controllerRef.current?.setVolume(volume);
 	}, []);
 
-	const setMuted = React.useCallback(async (muted: boolean) => {
+	const setMuted = useCallback(async (muted: boolean) => {
 		await controllerRef.current?.setMuted(muted);
 	}, []);
 
-	const setPlaybackRate = React.useCallback(async (playbackRate: number) => {
+	const setPlaybackRate = useCallback(async (playbackRate: number) => {
 		await controllerRef.current?.setPlaybackRate(playbackRate);
 	}, []);
 
-	const getDuration = React.useCallback(async () => {
+	const getDuration = useCallback(async () => {
 		return await controllerRef.current?.getDuration();
 	}, []);
 
-	const getCurrentTime = React.useCallback(async () => {
+	const getCurrentTime = useCallback(async () => {
 		return await controllerRef.current?.getCurrentTime();
 	}, []);
 
-	const getVolume = React.useCallback(async () => {
+	const getVolume = useCallback(async () => {
 		return await controllerRef.current?.getVolume();
 	}, []);
 
-	const getPlaybackRate = React.useCallback(async () => {
+	const getPlaybackRate = useCallback(async () => {
 		return await controllerRef.current?.getPlaybackRate();
 	}, []);
 
-	const value = React.useMemo(
+	const value = useMemo(
 		(): NostalgicDivaContextProps => ({
 			handleControllerChange,
 			loadVideo,
@@ -114,5 +122,5 @@ export const NostalgicDivaProvider = ({
 };
 
 export const useNostalgicDiva = (): NostalgicDivaContextProps => {
-	return React.useContext(NostalgicDivaContext);
+	return useContext(NostalgicDivaContext);
 };
