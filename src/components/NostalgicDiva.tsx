@@ -31,7 +31,7 @@ export interface NostalgicDivaProps {
 	src: string;
 	options?: PlayerOptions;
 	logger?: ILogger;
-	onControllerChange?: (value: IPlayerController) => void;
+	onControllerChange?: (value: IPlayerController | undefined) => void;
 }
 
 const defaultLogger = new Logger();
@@ -67,7 +67,7 @@ export const NostalgicDiva = memo(
 			| undefined;
 
 		const handleControllerChange = useCallback(
-			(value: IPlayerController) =>
+			(value: IPlayerController | undefined) =>
 				(onControllerChange ?? diva?.handleControllerChange)?.(value),
 			[diva?.handleControllerChange, onControllerChange],
 		);

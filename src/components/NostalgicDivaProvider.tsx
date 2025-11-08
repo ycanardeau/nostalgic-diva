@@ -9,10 +9,9 @@ import React, {
 } from 'react';
 
 import { IPlayerController } from '../controllers';
-import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 interface NostalgicDivaContextProps extends IPlayerController {
-	handleControllerChange: (value: IPlayerController) => void;
+	handleControllerChange: (value: IPlayerController | undefined) => void;
 }
 
 const NostalgicDivaContext = createContext<NostalgicDivaContextProps>(
@@ -27,68 +26,61 @@ interface NostalgicDivaProviderProps {
 export const NostalgicDivaProvider = ({
 	children,
 }: NostalgicDivaProviderProps): ReactElement => {
-	const controllerRef = useRef<IPlayerController>(nullPlayerController);
+	const controllerRef = useRef<IPlayerController>();
 
 	const handleControllerChange = useCallback(
-		(value: IPlayerController): void => {
+		(value: IPlayerController | undefined) => {
 			controllerRef.current = value;
 		},
 		[],
 	);
 
-	const loadVideo = useCallback(async (id: string): Promise<void> => {
-		await controllerRef.current.loadVideo(id);
+	const loadVideo = useCallback(async (id: string) => {
+		await controllerRef.current?.loadVideo(id);
 	}, []);
 
-	const play = useCallback(async (): Promise<void> => {
-		await controllerRef.current.play();
+	const play = useCallback(async () => {
+		await controllerRef.current?.play();
 	}, []);
 
-	const pause = useCallback(async (): Promise<void> => {
-		await controllerRef.current.pause();
+	const pause = useCallback(async () => {
+		await controllerRef.current?.pause();
 	}, []);
 
-	const setCurrentTime = useCallback(
-		async (seconds: number): Promise<void> => {
-			await controllerRef.current.setCurrentTime(seconds);
-			await controllerRef.current.play();
-		},
-		[],
-	);
+	const setCurrentTime = useCallback(async (seconds: number) => {
+		const controller = controllerRef.current;
+		if (!controller) return;
 
-	const setVolume = useCallback(async (volume: number): Promise<void> => {
-		await controllerRef.current.setVolume(volume);
+		await controller.setCurrentTime(seconds);
+		await controller.play();
 	}, []);
 
-	const setMuted = useCallback(async (muted: boolean): Promise<void> => {
-		await controllerRef.current.setMuted(muted);
+	const setVolume = useCallback(async (volume: number) => {
+		await controllerRef.current?.setVolume(volume);
 	}, []);
 
-	const setPlaybackRate = useCallback(
-		async (playbackRate: number): Promise<void> => {
-			await controllerRef.current.setPlaybackRate(playbackRate);
-		},
-		[],
-	);
-
-	const getDuration = useCallback(async (): Promise<number | undefined> => {
-		return await controllerRef.current.getDuration();
+	const setMuted = useCallback(async (muted: boolean) => {
+		await controllerRef.current?.setMuted(muted);
 	}, []);
 
-	const getCurrentTime = useCallback(async (): Promise<
-		number | undefined
-	> => {
-		return await controllerRef.current.getCurrentTime();
+	const setPlaybackRate = useCallback(async (playbackRate: number) => {
+		await controllerRef.current?.setPlaybackRate(playbackRate);
 	}, []);
 
-	const getVolume = useCallback(async (): Promise<number | undefined> => {
-		return await controllerRef.current.getVolume();
+	const getDuration = useCallback(async () => {
+		return await controllerRef.current?.getDuration();
 	}, []);
 
-	const getPlaybackRate = useCallback(async (): Promise<
-		number | undefined
-	> => {
-		return await controllerRef.current.getPlaybackRate();
+	const getCurrentTime = useCallback(async () => {
+		return await controllerRef.current?.getCurrentTime();
+	}, []);
+
+	const getVolume = useCallback(async () => {
+		return await controllerRef.current?.getVolume();
+	}, []);
+
+	const getPlaybackRate = useCallback(async () => {
+		return await controllerRef.current?.getPlaybackRate();
 	}, []);
 
 	const value = useMemo(

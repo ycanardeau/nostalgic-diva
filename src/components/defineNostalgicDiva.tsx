@@ -6,7 +6,6 @@ import {
 	PlayerOptions,
 } from '../controllers/PlayerController';
 import { NostalgicDiva } from './NostalgicDiva';
-import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 export class NostalgicDivaElement
 	extends HTMLElement
@@ -15,7 +14,7 @@ export class NostalgicDivaElement
 	static readonly observedAttributes = ['src'];
 
 	container: ShadowRoot;
-	controller: IPlayerController = nullPlayerController;
+	controller: IPlayerController | undefined;
 
 	constructor() {
 		super();
@@ -43,7 +42,7 @@ export class NostalgicDivaElement
 			this.dispatchEvent(new CustomEvent('timeupdate', { detail: e })),
 	};
 
-	#handleControllerChange = (value: IPlayerController): void => {
+	#handleControllerChange = (value: IPlayerController | undefined): void => {
 		console.debug(
 			'[@nostalgic-diva/web-components] handleControllerChange',
 		);
@@ -81,47 +80,47 @@ export class NostalgicDivaElement
 	}
 
 	async loadVideo(id: string): Promise<void> {
-		await this.controller.loadVideo(id);
+		await this.controller?.loadVideo(id);
 	}
 
 	async play(): Promise<void> {
-		await this.controller.play();
+		await this.controller?.play();
 	}
 
 	async pause(): Promise<void> {
-		await this.controller.pause();
+		await this.controller?.pause();
 	}
 
 	async setCurrentTime(seconds: number): Promise<void> {
-		await this.controller.setCurrentTime(seconds);
+		await this.controller?.setCurrentTime(seconds);
 	}
 
 	async setVolume(volume: number): Promise<void> {
-		await this.controller.setVolume(volume);
+		await this.controller?.setVolume(volume);
 	}
 
 	async setMuted(muted: boolean): Promise<void> {
-		await this.controller.setMuted(muted);
+		await this.controller?.setMuted(muted);
 	}
 
 	async setPlaybackRate(playbackRate: number): Promise<void> {
-		await this.controller.setPlaybackRate(playbackRate);
+		await this.controller?.setPlaybackRate(playbackRate);
 	}
 
 	async getDuration(): Promise<number | undefined> {
-		return await this.controller.getDuration();
+		return await this.controller?.getDuration();
 	}
 
 	async getCurrentTime(): Promise<number | undefined> {
-		return await this.controller.getCurrentTime();
+		return await this.controller?.getCurrentTime();
 	}
 
 	async getVolume(): Promise<number | undefined> {
-		return await this.controller.getVolume();
+		return await this.controller?.getVolume();
 	}
 
 	async getPlaybackRate(): Promise<number | undefined> {
-		return await this.controller.getPlaybackRate();
+		return await this.controller?.getPlaybackRate();
 	}
 }
 

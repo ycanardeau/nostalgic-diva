@@ -16,12 +16,13 @@ import {
 } from '../controllers/PlayerController';
 import { PlayerControllerImpl } from '../controllers/PlayerControllerImpl';
 import usePreviousDistinct from './usePreviousDistinct';
-import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 export interface PlayerProps {
 	logger: ILogger;
 	type: PlayerType;
-	onControllerChange: ((value: IPlayerController) => void) | undefined;
+	onControllerChange:
+		| ((value: IPlayerController | undefined) => void)
+		| undefined;
 	videoId: string;
 	options: PlayerOptions | undefined;
 }
@@ -70,8 +71,7 @@ export const PlayerContainer = <
 
 	const [player, setPlayer] = useState<TPlayer>();
 
-	const [controller, setController] =
-		useState<IPlayerController>(nullPlayerController);
+	const [controller, setController] = useState<IPlayerController>();
 	useEffect(() => {
 		onControllerChange?.(controller);
 	}, [controller, onControllerChange]);
@@ -105,9 +105,7 @@ export const PlayerContainer = <
 			.then(() => setController(controller));
 
 		return (): void => {
-			controller
-				.detach()
-				.finally(() => setController(nullPlayerController));
+			controller.detach().finally(() => setController(undefined));
 		};
 	}, [logger, type, loadScript, player, options, controllerFactory]);
 
@@ -121,7 +119,7 @@ export const PlayerContainer = <
 			return;
 		}
 
-		controller.loadVideo(videoId);
+		controller?.loadVideo(videoId);
 	}, [previousVideoId, videoId, controller]);
 
 	// Make sure that `videoId` does not change between re-rendering.
