@@ -36,60 +36,71 @@ export const NostalgicDivaProvider = ({
 		[],
 	);
 
-	const loadVideo = useCallback(async (id: string): Promise<void> => {
-		await controllerRef.current.loadVideo(id);
-	}, []);
+	const controller = controllerRef.current;
+
+	const loadVideo = useCallback(
+		async (id: string): Promise<void> => {
+			await controller.loadVideo(id);
+		},
+		[controller],
+	);
 
 	const play = useCallback(async (): Promise<void> => {
-		await controllerRef.current.play();
-	}, []);
+		await controller.play();
+	}, [controller]);
 
 	const pause = useCallback(async (): Promise<void> => {
-		await controllerRef.current.pause();
-	}, []);
+		await controller.pause();
+	}, [controller]);
 
 	const setCurrentTime = useCallback(
 		async (seconds: number): Promise<void> => {
-			await controllerRef.current.setCurrentTime(seconds);
-			await controllerRef.current.play();
+			await controller.setCurrentTime(seconds);
+			await controller.play();
 		},
-		[],
+		[controller],
 	);
 
-	const setVolume = useCallback(async (volume: number): Promise<void> => {
-		await controllerRef.current.setVolume(volume);
-	}, []);
+	const setVolume = useCallback(
+		async (volume: number): Promise<void> => {
+			await controller.setVolume(volume);
+		},
+		[controller],
+	);
 
-	const setMuted = useCallback(async (muted: boolean): Promise<void> => {
-		await controllerRef.current.setMuted(muted);
-	}, []);
+	const setMuted = useCallback(
+		async (muted: boolean): Promise<void> => {
+			await controller.setMuted(muted);
+		},
+		[controller],
+	);
 
 	const setPlaybackRate = useCallback(
 		async (playbackRate: number): Promise<void> => {
-			await controllerRef.current.setPlaybackRate(playbackRate);
+			await controller.setPlaybackRate(playbackRate);
 		},
-		[],
+		[controller],
 	);
 
 	const getDuration = useCallback(async (): Promise<number | undefined> => {
-		return await controllerRef.current.getDuration();
-	}, []);
+		return await controller.getDuration();
+	}, [controller]);
 
 	const getCurrentTime = useCallback(async (): Promise<
 		number | undefined
 	> => {
-		return await controllerRef.current.getCurrentTime();
-	}, []);
+		return await controller.getCurrentTime();
+	}, [controller]);
 
 	const getVolume = useCallback(async (): Promise<number | undefined> => {
-		return await controllerRef.current.getVolume();
-	}, []);
+		return await controller.getVolume();
+	}, [controller]);
 
 	const getPlaybackRate = useCallback(async (): Promise<
 		number | undefined
 	> => {
-		return await controllerRef.current.getPlaybackRate();
-	}, []);
+		return await controller.getPlaybackRate();
+	}, [controller]);
 
 	const value = useMemo(
 		(): NostalgicDivaContextProps => ({
