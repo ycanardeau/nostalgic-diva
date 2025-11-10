@@ -117,6 +117,12 @@ export class PlayerController<
 		return new Error('player is not attached');
 	}
 
+	private createCommandNotSupportedError(
+		command: keyof IPlayerController,
+	): Error {
+		return new Error(`${command} is not supported`);
+	}
+
 	async detach(): Promise<void> {
 		this.debug('detach');
 
@@ -136,6 +142,10 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.loadVideo === undefined) {
+			throw this.createCommandNotSupportedError('loadVideo');
+		}
+
 		this.debug('Loading video...');
 
 		await this.impl.loadVideo(id);
@@ -150,6 +160,10 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.play === undefined) {
+			throw this.createCommandNotSupportedError('play');
+		}
+
 		return this.impl.play();
 	}
 
@@ -158,6 +172,10 @@ export class PlayerController<
 
 		if (this.impl === undefined) {
 			throw this.createPlayerNotAttachedError();
+		}
+
+		if (this.impl.pause === undefined) {
+			throw this.createCommandNotSupportedError('pause');
 		}
 
 		return this.impl.pause();
@@ -170,6 +188,10 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.setCurrentTime === undefined) {
+			throw this.createCommandNotSupportedError('setCurrentTime');
+		}
+
 		return this.impl.setCurrentTime(seconds);
 	}
 
@@ -178,6 +200,10 @@ export class PlayerController<
 
 		if (this.impl === undefined) {
 			throw this.createPlayerNotAttachedError();
+		}
+
+		if (this.impl.setVolume === undefined) {
+			throw this.createCommandNotSupportedError('setVolume');
 		}
 
 		return this.impl.setVolume(volume);
@@ -190,6 +216,10 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.setMuted === undefined) {
+			throw this.createCommandNotSupportedError('setMuted');
+		}
+
 		return this.impl.setMuted(muted);
 	}
 
@@ -198,6 +228,10 @@ export class PlayerController<
 
 		if (this.impl === undefined) {
 			throw this.createPlayerNotAttachedError();
+		}
+
+		if (this.impl.setPlaybackRate === undefined) {
+			throw this.createCommandNotSupportedError('setPlaybackRate');
 		}
 
 		return this.impl.setPlaybackRate(playbackRate);
@@ -210,6 +244,10 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.getDuration === undefined) {
+			throw this.createCommandNotSupportedError('getDuration');
+		}
+
 		return this.impl.getDuration();
 	}
 
@@ -218,6 +256,10 @@ export class PlayerController<
 
 		if (this.impl === undefined) {
 			throw this.createPlayerNotAttachedError();
+		}
+
+		if (this.impl.getCurrentTime === undefined) {
+			throw this.createCommandNotSupportedError('getCurrentTime');
 		}
 
 		return this.impl.getCurrentTime();
@@ -230,6 +272,10 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.getVolume === undefined) {
+			throw this.createCommandNotSupportedError('getVolume');
+		}
+
 		return this.impl.getVolume();
 	}
 
@@ -240,6 +286,18 @@ export class PlayerController<
 			throw this.createPlayerNotAttachedError();
 		}
 
+		if (this.impl.getPlaybackRate === undefined) {
+			throw this.createCommandNotSupportedError('getPlaybackRate');
+		}
+
 		return this.impl.getPlaybackRate();
+	}
+
+	supports(command: keyof IPlayerController): boolean {
+		if (this.impl === undefined) {
+			throw this.createPlayerNotAttachedError();
+		}
+
+		return this.impl.supports(command);
 	}
 }

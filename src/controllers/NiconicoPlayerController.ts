@@ -174,9 +174,7 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 		});
 	}
 
-	async setPlaybackRate(playbackRate: number): Promise<void> {
-		/* Not supported. */
-	}
+	setPlaybackRate = undefined;
 
 	async getDuration(): Promise<number | undefined> {
 		return this.duration;
@@ -190,7 +188,5 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 		return this.volume;
 	}
 
-	async getPlaybackRate(): Promise<number | undefined> {
-		return 1 /* Not supported. */;
-	}
+	getPlaybackRate = undefined;
 }
