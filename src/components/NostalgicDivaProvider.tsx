@@ -8,7 +8,7 @@ import React, {
 	useRef,
 } from 'react';
 
-import { IPlayerController } from '../controllers';
+import { IPlayerCommands, IPlayerController } from '../controllers';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 interface NostalgicDivaContextProps extends IPlayerController {
@@ -91,6 +91,12 @@ export const NostalgicDivaProvider = ({
 		return await controllerRef.current.getPlaybackRate();
 	}, []);
 
+	const supports = useCallback(
+		(command: keyof IPlayerCommands): boolean =>
+			controllerRef.current.supports(command),
+		[],
+	);
+
 	const value = useMemo(
 		(): NostalgicDivaContextProps => ({
 			handleControllerChange,
@@ -105,6 +111,7 @@ export const NostalgicDivaProvider = ({
 			getCurrentTime,
 			getVolume,
 			getPlaybackRate,
+			supports,
 		}),
 		[
 			handleControllerChange,
@@ -119,6 +126,7 @@ export const NostalgicDivaProvider = ({
 			getCurrentTime,
 			getVolume,
 			getPlaybackRate,
+			supports,
 		],
 	);
 

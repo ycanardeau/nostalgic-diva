@@ -1,4 +1,7 @@
-import { IPlayerController } from '@/controllers/PlayerController';
+import {
+	IPlayerCommands,
+	IPlayerController,
+} from '@/controllers/PlayerController';
 
 class NullPlayerController implements IPlayerController {
 	async attach(): Promise<void> {}
@@ -33,6 +36,10 @@ class NullPlayerController implements IPlayerController {
 
 	async getPlaybackRate(): Promise<number | undefined> {
 		return undefined;
+	}
+
+	supports(command: keyof IPlayerCommands): boolean {
+		return false;
 	}
 }
 

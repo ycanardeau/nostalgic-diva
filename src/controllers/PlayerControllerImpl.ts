@@ -1,8 +1,8 @@
 import { ILogger, LogLevel } from './Logger';
-import { IPlayerController, PlayerOptions } from './PlayerController';
+import { IPlayerCommands, PlayerOptions } from './PlayerController';
 
 export abstract class PlayerControllerImpl<TPlayer>
-	implements Partial<IPlayerController>
+	implements Partial<IPlayerCommands>
 {
 	constructor(
 		protected readonly logger: ILogger,
@@ -26,7 +26,7 @@ export abstract class PlayerControllerImpl<TPlayer>
 	abstract getVolume?(): Promise<number | undefined>;
 	abstract getPlaybackRate?(): Promise<number | undefined>;
 
-	supports(command: keyof IPlayerController): boolean {
+	supports(command: keyof IPlayerCommands): boolean {
 		return this[command] !== undefined;
 	}
 }
