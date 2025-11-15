@@ -34,7 +34,7 @@ export interface PlayerOptions {
 	onTimeUpdate?(event: TimeEvent): void;
 }
 
-export interface IPlayerCommands {
+export interface IPlayerController {
 	loadVideo(id: string): Promise<void>;
 	play(): Promise<void>;
 	pause(): Promise<void>;
@@ -46,10 +46,6 @@ export interface IPlayerCommands {
 	getCurrentTime(): Promise<number | undefined>;
 	getVolume(): Promise<number | undefined>;
 	getPlaybackRate(): Promise<number | undefined>;
-}
-
-export interface IPlayerController extends IPlayerCommands {
-	supports(command: keyof IPlayerCommands): boolean;
 }
 
 export class PlayerController<
@@ -122,7 +118,7 @@ export class PlayerController<
 	}
 
 	private createCommandNotSupportedError(
-		command: keyof IPlayerCommands,
+		command: keyof IPlayerController,
 	): Error {
 		return new Error(`${command} is not supported`);
 	}
@@ -297,7 +293,7 @@ export class PlayerController<
 		return this.impl.getPlaybackRate();
 	}
 
-	supports(command: keyof IPlayerCommands): boolean {
+	supports(command: keyof IPlayerController): boolean {
 		if (this.impl === undefined) {
 			throw this.createPlayerNotAttachedError();
 		}

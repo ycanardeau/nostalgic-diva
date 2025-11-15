@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import {
-	IPlayerCommands,
 	IPlayerController,
 	PlayerOptions,
 } from '../controllers/PlayerController';
@@ -123,10 +122,6 @@ export class NostalgicDivaElement
 
 	async getPlaybackRate(): Promise<number | undefined> {
 		return await this.controller.getPlaybackRate();
-	}
-
-	supports(command: keyof IPlayerCommands): boolean {
-		return this.controller.supports(command);
 	}
 }
 
