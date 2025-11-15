@@ -76,7 +76,9 @@ export class DailymotionPlayerController extends PlayerControllerImpl<DM.player>
 		this.player.setMuted(muted);
 	}
 
-	setPlaybackRate = undefined;
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		/* Not supported. */
+	}
 
 	async getDuration(): Promise<number | undefined> {
 		return this.player.duration;
@@ -90,5 +92,7 @@ export class DailymotionPlayerController extends PlayerControllerImpl<DM.player>
 		return this.player.volume;
 	}
 
-	getPlaybackRate = undefined;
+	async getPlaybackRate(): Promise<number | undefined> {
+		return 1; /* Not supported. */
+	}
 }

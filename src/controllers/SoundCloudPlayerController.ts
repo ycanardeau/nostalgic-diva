@@ -89,7 +89,9 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 		this.setVolume(muted ? 0 : 1 /* TODO */);
 	}
 
-	setPlaybackRate = undefined;
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		/* Not supported. */
+	}
 
 	async getDuration(): Promise<number | undefined> {
 		const duration = await this.getDurationCore();
@@ -118,5 +120,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 		return volume / 100;
 	}
 
-	getPlaybackRate = undefined;
+	async getPlaybackRate(): Promise<number | undefined> {
+		return 1; /* Not supported. */
+	}
 }

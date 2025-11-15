@@ -59,7 +59,9 @@ export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> 
 		this.player.setMuted(muted);
 	}
 
-	setPlaybackRate = undefined;
+	async setPlaybackRate(playbackRate: number): Promise<void> {
+		/* Not supported. */
+	}
 
 	async getDuration(): Promise<number | undefined> {
 		return this.player.getDuration();
@@ -73,5 +75,7 @@ export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> 
 		return this.player.getVolume();
 	}
 
-	getPlaybackRate = undefined;
+	async getPlaybackRate(): Promise<number | undefined> {
+		return 1; /* Not supported. */
+	}
 }
