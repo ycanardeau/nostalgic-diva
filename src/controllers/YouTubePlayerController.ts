@@ -161,6 +161,10 @@ export class YouTubePlayerController extends PlayerControllerImpl<YT.Player> {
 		return this.player.getVolume() / 100;
 	}
 
+	async getMuted(): Promise<boolean> {
+		return this.player.isMuted();
+	}
+
 	async getPlaybackRate(): Promise<number> {
 		return this.player.getPlaybackRate();
 	}

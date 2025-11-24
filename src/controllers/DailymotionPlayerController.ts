@@ -90,5 +90,9 @@ export class DailymotionPlayerController extends PlayerControllerImpl<DM.player>
 		return this.player.volume;
 	}
 
+	async getMuted(): Promise<boolean> {
+		return this.player.muted;
+	}
+
 	getPlaybackRate = undefined;
 }

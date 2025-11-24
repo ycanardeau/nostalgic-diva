@@ -83,6 +83,10 @@ export const NostalgicDivaProvider = ({
 		return await controllerRef.current.getVolume();
 	}, []);
 
+	const getMuted = useCallback(async (): Promise<boolean> => {
+		return await controllerRef.current.getMuted();
+	}, []);
+
 	const getPlaybackRate = useCallback(async (): Promise<number> => {
 		return await controllerRef.current.getPlaybackRate();
 	}, []);
@@ -106,6 +110,7 @@ export const NostalgicDivaProvider = ({
 			getDuration,
 			getCurrentTime,
 			getVolume,
+			getMuted,
 			getPlaybackRate,
 			supports,
 		}),
@@ -121,6 +126,7 @@ export const NostalgicDivaProvider = ({
 			getDuration,
 			getCurrentTime,
 			getVolume,
+			getMuted,
 			getPlaybackRate,
 			supports,
 		],

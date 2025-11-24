@@ -70,6 +70,10 @@ export class VimeoPlayerController extends PlayerControllerImpl<Vimeo.Player> {
 		return this.player.getVolume();
 	}
 
+	async getMuted(): Promise<boolean> {
+		return await this.player.getMuted();
+	}
+
 	async getPlaybackRate(): Promise<number> {
 		return this.player.getPlaybackRate();
 	}

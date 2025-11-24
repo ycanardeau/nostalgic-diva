@@ -121,6 +121,10 @@ export class NostalgicDivaElement
 		return await this.controller.getVolume();
 	}
 
+	async getMuted(): Promise<boolean> {
+		return await this.controller.getMuted();
+	}
+
 	async getPlaybackRate(): Promise<number> {
 		return await this.controller.getPlaybackRate();
 	}

@@ -24,6 +24,7 @@ export abstract class PlayerControllerImpl<TPlayer>
 	abstract getDuration?(): Promise<number>;
 	abstract getCurrentTime?(): Promise<number>;
 	abstract getVolume?(): Promise<number>;
+	abstract getMuted?(): Promise<boolean>;
 	abstract getPlaybackRate?(): Promise<number>;
 
 	supports(command: keyof IPlayerCommands): boolean {

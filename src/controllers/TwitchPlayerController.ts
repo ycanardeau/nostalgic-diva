@@ -73,5 +73,9 @@ export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> 
 		return this.player.getVolume();
 	}
 
+	async getMuted(): Promise<boolean> {
+		return this.player.getMuted();
+	}
+
 	getPlaybackRate = undefined;
 }

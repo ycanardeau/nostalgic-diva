@@ -67,6 +67,10 @@ export class AudioPlayerController extends PlayerControllerImpl<HTMLAudioElement
 		return this.player.volume;
 	}
 
+	async getMuted(): Promise<boolean> {
+		return this.player.muted;
+	}
+
 	async getPlaybackRate(): Promise<number> {
 		return this.player.playbackRate;
 	}

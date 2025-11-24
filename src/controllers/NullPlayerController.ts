@@ -34,6 +34,10 @@ class NullPlayerController implements IPlayerController {
 		return 0;
 	}
 
+	async getMuted(): Promise<boolean> {
+		return false;
+	}
+
 	async getPlaybackRate(): Promise<number> {
 		return 0;
 	}

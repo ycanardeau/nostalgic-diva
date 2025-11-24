@@ -20,6 +20,7 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 	private duration = 0;
 	private currentTime = 0;
 	private volume = 0;
+	private muted = false;
 
 	private handleMessage = (e: nico.PlayerEvent): void => {
 		if (e.origin !== NiconicoPlayerController.origin) return;
@@ -71,6 +72,7 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 						: data.data.currentTime / 1000;
 
 				this.volume = data.data.volume;
+				this.muted = data.data.muted;
 
 				this.options?.onTimeUpdate?.({
 					duration: this.duration,
@@ -124,6 +126,8 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 		return new Promise((resolve, reject /* TODO: Reject. */) => {
 			this.duration = 0;
 			this.currentTime = 0;
+			this.volume = 0;
+			this.muted = false;
 
 			// Wait for iframe to load.
 			this.player.onload = (): void => {
@@ -185,6 +189,10 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 
 	async getVolume(): Promise<number> {
 		return this.volume;
+	}
+
+	async getMuted(): Promise<boolean> {
+		return this.muted;
 	}
 
 	getPlaybackRate = undefined;

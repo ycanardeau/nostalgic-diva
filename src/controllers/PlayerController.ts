@@ -45,6 +45,7 @@ export interface IPlayerCommands {
 	getDuration(): Promise<number>;
 	getCurrentTime(): Promise<number>;
 	getVolume(): Promise<number>;
+	getMuted(): Promise<boolean>;
 	getPlaybackRate(): Promise<number>;
 }
 
@@ -281,6 +282,20 @@ export class PlayerController<
 		}
 
 		return this.impl.getVolume();
+	}
+
+	getMuted(): Promise<boolean> {
+		this.debug('getMuted');
+
+		if (this.impl === undefined) {
+			throw this.createPlayerNotAttachedError();
+		}
+
+		if (this.impl.getMuted === undefined) {
+			throw this.createCommandNotSupportedError('getMuted');
+		}
+
+		return this.impl.getMuted();
 	}
 
 	getPlaybackRate(): Promise<number> {

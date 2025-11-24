@@ -30,6 +30,7 @@ declare namespace nico {
 			currentTime: number;
 			duration: number;
 			volume: number;
+			muted: boolean;
 		};
 	}
 
@@ -828,6 +829,7 @@ declare namespace DM {
 		readonly duration: number;
 		readonly currentTime: number;
 		readonly volume: number;
+		readonly muted: boolean;
 		readonly video: { videoId: string };
 
 		addEventListener(
