@@ -1,3 +1,4 @@
+import { nullPlayerController } from '@/controllers/NullPlayerController';
 import React, {
 	ReactElement,
 	ReactNode,
@@ -9,7 +10,6 @@ import React, {
 } from 'react';
 
 import { IPlayerController } from '../controllers';
-import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 interface NostalgicDivaContextProps extends IPlayerController {
 	handleControllerChange: (value: IPlayerController) => void;

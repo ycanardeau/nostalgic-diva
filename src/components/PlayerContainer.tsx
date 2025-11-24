@@ -1,3 +1,4 @@
+import { nullPlayerController } from '@/controllers/NullPlayerController';
 import React, {
 	MutableRefObject,
 	ReactElement,
@@ -16,7 +17,6 @@ import {
 } from '../controllers/PlayerController';
 import { PlayerControllerImpl } from '../controllers/PlayerControllerImpl';
 import usePreviousDistinct from './usePreviousDistinct';
-import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 export interface PlayerProps {
 	logger: ILogger;

@@ -1,3 +1,4 @@
+import { nullPlayerController } from '@/controllers/NullPlayerController';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -6,7 +7,6 @@ import {
 	PlayerOptions,
 } from '../controllers/PlayerController';
 import { NostalgicDiva } from './NostalgicDiva';
-import { nullPlayerController } from '@/controllers/NullPlayerController';
 
 export class NostalgicDivaElement
 	extends HTMLElement
