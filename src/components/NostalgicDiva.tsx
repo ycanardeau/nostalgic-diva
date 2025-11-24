@@ -61,7 +61,7 @@ export const NostalgicDiva = memo(
 
 		const handleControllerChange = useCallback(
 			(value: IPlayerController) => {
-				diva?.handleControllerChange(value);
+				diva.handleControllerChange(value);
 
 				onControllerChange?.(value);
 			},
