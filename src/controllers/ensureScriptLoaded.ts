@@ -1,5 +1,5 @@
-import { ILogger, LogLevel } from './Logger';
-import { getScript } from './getScript';
+import { ILogger, LogLevel } from '@/controllers/Logger';
+import { getScript } from '@/controllers/getScript';
 
 const urls: string[] = [];
 

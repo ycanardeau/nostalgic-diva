@@ -1,3 +1,12 @@
+import { useNostalgicDiva } from '@/components/NostalgicDivaProvider';
+import { PlayerProps } from '@/components/PlayerContainer';
+import { LogLevel } from '@/controllers/Logger';
+import {
+	IPlayerController,
+	PlayerOptions,
+	PlayerType,
+} from '@/controllers/PlayerController';
+import { findVideoService } from '@/services/findVideoService';
 import React, {
 	ElementType,
 	ReactElement,
@@ -6,16 +15,6 @@ import React, {
 	memo,
 	useCallback,
 } from 'react';
-
-import { LogLevel } from '../controllers/Logger';
-import {
-	IPlayerController,
-	PlayerOptions,
-	PlayerType,
-} from '../controllers/PlayerController';
-import { findVideoService } from '../services/findVideoService';
-import { useNostalgicDiva } from './NostalgicDivaProvider';
-import { PlayerProps } from './PlayerContainer';
 
 const players: Record<PlayerType, ElementType<PlayerProps>> = {
 	Audio: lazy(() => import('./AudioPlayer')),

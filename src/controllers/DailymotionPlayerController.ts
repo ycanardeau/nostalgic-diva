@@ -1,4 +1,4 @@
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 const events = [
 	'apiready',

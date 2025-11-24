@@ -1,10 +1,10 @@
-import { AudioVideoService } from './AudioVideoService';
-import { DailymotionVideoService } from './DailymotionVideoService';
-import { NiconicoVideoService } from './NiconicoVideoService';
-import { SoundCloudVideoService } from './SoundCloudVideoService';
-import { TwitchVideoService } from './TwitchVideoService';
-import { VimeoVideoService } from './VimeoVideoService';
-import { YouTubeVideoService } from './YouTubeVideoService';
+import { AudioVideoService } from '@/services/AudioVideoService';
+import { DailymotionVideoService } from '@/services/DailymotionVideoService';
+import { NiconicoVideoService } from '@/services/NiconicoVideoService';
+import { SoundCloudVideoService } from '@/services/SoundCloudVideoService';
+import { TwitchVideoService } from '@/services/TwitchVideoService';
+import { VimeoVideoService } from '@/services/VimeoVideoService';
+import { YouTubeVideoService } from '@/services/YouTubeVideoService';
 
 const videoServices = [
 	new AudioVideoService(),

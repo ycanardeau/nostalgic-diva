@@ -1,5 +1,5 @@
-import { PlayerType } from '../controllers/PlayerController';
-import { VideoService } from './VideoService';
+import { PlayerType } from '@/controllers/PlayerController';
+import { VideoService } from '@/services/VideoService';
 
 const MATCH_URL_NICONICO = /(?:www\.|)?nicovideo\.jp\/watch\/(\w+)$/;
 

@@ -1,5 +1,5 @@
-import { ILogger, LogLevel } from './Logger';
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { ILogger, LogLevel } from '@/controllers/Logger';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 export enum PlayerType {
 	'Audio' = 'Audio',

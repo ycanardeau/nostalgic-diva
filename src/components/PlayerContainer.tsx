@@ -1,4 +1,13 @@
+import usePreviousDistinct from '@/components/usePreviousDistinct';
+import { ILogger, LogLevel } from '@/controllers/Logger';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
+import {
+	IPlayerController,
+	PlayerController,
+	PlayerOptions,
+	PlayerType,
+} from '@/controllers/PlayerController';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 import React, {
 	MutableRefObject,
 	ReactElement,
@@ -7,16 +16,6 @@ import React, {
 	useRef,
 	useState,
 } from 'react';
-
-import { ILogger, LogLevel } from '../controllers/Logger';
-import {
-	IPlayerController,
-	PlayerController,
-	PlayerOptions,
-	PlayerType,
-} from '../controllers/PlayerController';
-import { PlayerControllerImpl } from '../controllers/PlayerControllerImpl';
-import usePreviousDistinct from './usePreviousDistinct';
 
 export interface PlayerProps {
 	logger: ILogger;

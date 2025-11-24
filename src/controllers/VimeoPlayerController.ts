@@ -1,4 +1,4 @@
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 // https://github.com/cookpete/react-player/blob/e3c324bc6845698179d065fa408db515c2296b4b/src/players/Vimeo.js
 export class VimeoPlayerController extends PlayerControllerImpl<Vimeo.Player> {

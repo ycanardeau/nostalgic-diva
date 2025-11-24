@@ -1,7 +1,6 @@
 // https://github.com/streamich/react-use/blob/8ceb4c0f0c5625124f487b435a2fd0d3b3bc2a4f/src/usePreviousDistinct.ts.
+import { useFirstMountState } from '@/components/useFirstMountState';
 import { useRef } from 'react';
-
-import { useFirstMountState } from './useFirstMountState';
 
 export type Predicate<T> = (prev: T | undefined, next: T) => boolean;
 

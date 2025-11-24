@@ -1,4 +1,4 @@
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 // https://github.com/VocaDB/vocadb/blob/61b8c54f3eca906a477101dab4fdd9b154be310e/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerFile.ts.
 export class AudioPlayerController extends PlayerControllerImpl<HTMLAudioElement> {
@@ -32,7 +32,7 @@ export class AudioPlayerController extends PlayerControllerImpl<HTMLAudioElement
 	}
 
 	async play(): Promise<void> {
-		this.player.play();
+		await this.player.play();
 	}
 
 	async pause(): Promise<void> {

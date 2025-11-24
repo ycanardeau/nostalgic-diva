@@ -1,4 +1,4 @@
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 // https://github.com/VocaDB/vocadb/blob/e147650a8f1f85c8fa865d0ab562126c278527ec/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerSoundCloud.ts.
 export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundCloudWidget> {

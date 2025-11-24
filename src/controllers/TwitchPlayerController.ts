@@ -1,4 +1,4 @@
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> {
 	private handleReady = (): void => {

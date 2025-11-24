@@ -1,5 +1,5 @@
-import { ILogger, LogLevel } from './Logger';
-import { IPlayerCommands, PlayerOptions } from './PlayerController';
+import { ILogger, LogLevel } from '@/controllers/Logger';
+import { IPlayerCommands, PlayerOptions } from '@/controllers/PlayerController';
 
 export abstract class PlayerControllerImpl<TPlayer>
 	implements Partial<IPlayerCommands>

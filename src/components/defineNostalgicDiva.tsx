@@ -1,14 +1,13 @@
+import { NostalgicDiva } from '@/components/NostalgicDiva';
 import { NostalgicDivaProvider } from '@/components/NostalgicDivaProvider';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
-import React from 'react';
-import ReactDOM from 'react-dom';
-
 import {
 	IPlayerCommands,
 	IPlayerController,
 	PlayerOptions,
-} from '../controllers/PlayerController';
-import { NostalgicDiva } from './NostalgicDiva';
+} from '@/controllers/PlayerController';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 export class NostalgicDivaElement
 	extends HTMLElement

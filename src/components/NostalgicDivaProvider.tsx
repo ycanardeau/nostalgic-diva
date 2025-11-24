@@ -1,5 +1,9 @@
 import { ILogger, LogLevel, defaultLogger } from '@/controllers/Logger';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
+import {
+	IPlayerCommands,
+	IPlayerController,
+} from '@/controllers/PlayerController';
 import React, {
 	ReactElement,
 	ReactNode,
@@ -9,8 +13,6 @@ import React, {
 	useMemo,
 	useRef,
 } from 'react';
-
-import { IPlayerCommands, IPlayerController } from '../controllers';
 
 interface NostalgicDivaContextProps extends IPlayerController {
 	logger: ILogger;

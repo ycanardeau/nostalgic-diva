@@ -1,5 +1,5 @@
-import { LogLevel } from './Logger';
-import { PlayerControllerImpl } from './PlayerControllerImpl';
+import { LogLevel } from '@/controllers/Logger';
+import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 declare global {
 	interface Window {
