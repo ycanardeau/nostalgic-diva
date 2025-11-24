@@ -4,6 +4,7 @@ import React, {
 	ReactElement,
 	ReactNode,
 	useEffect,
+	useLayoutEffect,
 	useRef,
 	useState,
 } from 'react';
@@ -72,7 +73,7 @@ export const PlayerContainer = <
 
 	const [controller, setController] =
 		useState<IPlayerController>(nullPlayerController);
-	useEffect(() => {
+	useLayoutEffect(() => {
 		onControllerChange?.(controller);
 	}, [controller, onControllerChange]);
 
