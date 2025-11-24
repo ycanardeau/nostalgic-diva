@@ -96,14 +96,12 @@ export const PlayerContainer = <
 			controllerFactory,
 		);
 
-		void controller
-			.attach(videoIdRef.current)
-			.then(() => setController(controller));
+		setController(controller);
+		void controller.attach(videoIdRef.current);
 
 		return (): void => {
-			controller
-				.detach()
-				.finally(() => setController(nullPlayerController));
+			setController(nullPlayerController);
+			void controller.detach();
 		};
 	}, [logger, type, loadScript, player, options, controllerFactory]);
 
