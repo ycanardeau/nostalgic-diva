@@ -1,8 +1,8 @@
 import { PlayerType } from '@/controllers/PlayerController';
 import { VideoService } from '@/services/VideoService';
 
-// https://github.com/cookpete/react-player/blob/2811bc59b9368170acc20d4f1e39555413d0d9e1/src/patterns.js
-const MATCH_URL_VIMEO = /vimeo\.com\/(\d+)$/;
+// https://github.com/cookpete/react-player/blob/258fce939638a295f6a429ad683935254d1bfda2/src/patterns.ts#L10
+const MATCH_URL_VIMEO = /vimeo\.com\/(?!progressive_redirect).+/;
 
 export class VimeoVideoService extends VideoService<PlayerType.Vimeo> {
 	constructor() {
