@@ -24,7 +24,7 @@ const NostalgicDivaContext = createContext<NostalgicDivaContextProps>(
 	undefined!,
 );
 
-interface NostalgicDivaProviderProps {
+export interface NostalgicDivaProviderProps {
 	children?: ReactNode;
 	logger?: ILogger;
 }
