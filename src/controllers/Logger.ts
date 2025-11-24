@@ -41,7 +41,7 @@ export interface ILogger {
 	log(logLevel: LogLevel, message?: any, ...optionalParams: any[]): void;
 }
 
-export class Logger implements ILogger {
+class Logger implements ILogger {
 	private readonly title = 'nostalgic-diva';
 
 	private createMessage(message: any): string {
@@ -78,3 +78,5 @@ export class Logger implements ILogger {
 		}
 	}
 }
+
+export const defaultLogger = new Logger();

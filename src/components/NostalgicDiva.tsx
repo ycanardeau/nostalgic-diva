@@ -7,7 +7,7 @@ import React, {
 	useCallback,
 } from 'react';
 
-import { ILogger, LogLevel, Logger } from '../controllers/Logger';
+import { LogLevel } from '../controllers/Logger';
 import {
 	IPlayerController,
 	PlayerOptions,
@@ -30,11 +30,8 @@ const players: Record<PlayerType, ElementType<PlayerProps>> = {
 export interface NostalgicDivaProps {
 	src: string;
 	options?: PlayerOptions;
-	logger?: ILogger;
 	onControllerChange?: (value: IPlayerController) => void;
 }
-
-const defaultLogger = new Logger();
 
 function getTypeAndVideoId(
 	url: string,
@@ -58,13 +55,9 @@ export const NostalgicDiva = memo(
 	({
 		src,
 		options,
-		logger = defaultLogger,
 		onControllerChange,
 	}: NostalgicDivaProps): ReactElement => {
-		// useNostalgicDiva may return undefined if NostalgicDiva is used without NostalgicDivaProvider.
-		const diva = useNostalgicDiva() as
-			| ReturnType<typeof useNostalgicDiva>
-			| undefined;
+		const diva = useNostalgicDiva();
 
 		const handleControllerChange = useCallback(
 			(value: IPlayerController) => {
@@ -75,7 +68,7 @@ export const NostalgicDiva = memo(
 			[diva, onControllerChange],
 		);
 
-		logger.log(LogLevel.Debug, 'NostalgicDiva');
+		diva.logger.log(LogLevel.Debug, 'NostalgicDiva');
 
 		const typeAndVideoId = getTypeAndVideoId(src);
 		if (typeAndVideoId === undefined) {
@@ -101,7 +94,7 @@ export const NostalgicDiva = memo(
 		return (
 			<Suspense fallback={null}>
 				<Player
-					logger={logger}
+					logger={diva.logger}
 					type={type}
 					onControllerChange={handleControllerChange}
 					videoId={videoId}

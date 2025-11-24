@@ -1,3 +1,4 @@
+import { NostalgicDivaProvider } from '@/components/NostalgicDivaProvider';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -54,11 +55,13 @@ export class NostalgicDivaElement
 
 	#render(): void {
 		ReactDOM.render(
-			<NostalgicDiva
-				src={this.src}
-				options={this.#options}
-				onControllerChange={this.#handleControllerChange}
-			/>,
+			<NostalgicDivaProvider>
+				<NostalgicDiva
+					src={this.src}
+					options={this.#options}
+					onControllerChange={this.#handleControllerChange}
+				/>
+			</NostalgicDivaProvider>,
 			this.container,
 		);
 	}
