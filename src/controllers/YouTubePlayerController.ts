@@ -149,19 +149,19 @@ export class YouTubePlayerController extends PlayerControllerImpl<YT.Player> {
 		this.player.setPlaybackRate(playbackRate);
 	}
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		return this.player.getDuration();
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		return this.player.getCurrentTime();
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		return this.player.getVolume() / 100;
 	}
 
-	async getPlaybackRate(): Promise<number | undefined> {
+	async getPlaybackRate(): Promise<number> {
 		return this.player.getPlaybackRate();
 	}
 }

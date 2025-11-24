@@ -20,9 +20,9 @@ export interface LoadedEvent {
 }
 
 export interface TimeEvent {
-	duration: number | undefined;
-	percent: number | undefined;
-	seconds: number | undefined;
+	duration: number;
+	percent: number;
+	seconds: number;
 }
 
 export interface PlayerOptions {
@@ -42,10 +42,10 @@ export interface IPlayerCommands {
 	setVolume(volume: number): Promise<void>;
 	setMuted(muted: boolean): Promise<void>;
 	setPlaybackRate(playbackRate: number): Promise<void>;
-	getDuration(): Promise<number | undefined>;
-	getCurrentTime(): Promise<number | undefined>;
-	getVolume(): Promise<number | undefined>;
-	getPlaybackRate(): Promise<number | undefined>;
+	getDuration(): Promise<number>;
+	getCurrentTime(): Promise<number>;
+	getVolume(): Promise<number>;
+	getPlaybackRate(): Promise<number>;
 }
 
 export interface IPlayerController extends IPlayerCommands {
@@ -241,7 +241,7 @@ export class PlayerController<
 		return this.impl.setPlaybackRate(playbackRate);
 	}
 
-	getDuration(): Promise<number | undefined> {
+	getDuration(): Promise<number> {
 		this.debug('getDuration');
 
 		if (this.impl === undefined) {
@@ -255,7 +255,7 @@ export class PlayerController<
 		return this.impl.getDuration();
 	}
 
-	getCurrentTime(): Promise<number | undefined> {
+	getCurrentTime(): Promise<number> {
 		this.debug('getCurrentTime');
 
 		if (this.impl === undefined) {
@@ -269,7 +269,7 @@ export class PlayerController<
 		return this.impl.getCurrentTime();
 	}
 
-	getVolume(): Promise<number | undefined> {
+	getVolume(): Promise<number> {
 		this.debug('getVolume');
 
 		if (this.impl === undefined) {
@@ -283,7 +283,7 @@ export class PlayerController<
 		return this.impl.getVolume();
 	}
 
-	getPlaybackRate(): Promise<number | undefined> {
+	getPlaybackRate(): Promise<number> {
 		this.debug('getPlaybackRate');
 
 		if (this.impl === undefined) {

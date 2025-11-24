@@ -55,19 +55,19 @@ export class AudioPlayerController extends PlayerControllerImpl<HTMLAudioElement
 		this.player.playbackRate = playbackRate;
 	}
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		return this.player.duration;
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		return this.player.currentTime;
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		return this.player.volume;
 	}
 
-	async getPlaybackRate(): Promise<number | undefined> {
+	async getPlaybackRate(): Promise<number> {
 		return this.player.playbackRate;
 	}
 }

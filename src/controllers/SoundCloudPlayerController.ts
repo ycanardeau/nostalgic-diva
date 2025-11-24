@@ -91,7 +91,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 
 	setPlaybackRate = undefined;
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		const duration = await this.getDurationCore();
 		return duration / 1000;
 	}
@@ -102,7 +102,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 		});
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		const position = await this.getCurrentTimeCore();
 		return position / 1000;
 	}
@@ -113,7 +113,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 		});
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		const volume = await this.getVolumeCore();
 		return volume / 100;
 	}

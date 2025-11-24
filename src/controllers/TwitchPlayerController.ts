@@ -61,15 +61,15 @@ export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> 
 
 	setPlaybackRate = undefined;
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		return this.player.getDuration();
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		return this.player.getCurrentTime();
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		return this.player.getVolume();
 	}
 

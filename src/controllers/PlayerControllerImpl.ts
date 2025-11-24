@@ -21,10 +21,10 @@ export abstract class PlayerControllerImpl<TPlayer>
 	abstract setVolume?(volume: number): Promise<void>;
 	abstract setMuted?(muted: boolean): Promise<void>;
 	abstract setPlaybackRate?(playbackRate: number): Promise<void>;
-	abstract getDuration?(): Promise<number | undefined>;
-	abstract getCurrentTime?(): Promise<number | undefined>;
-	abstract getVolume?(): Promise<number | undefined>;
-	abstract getPlaybackRate?(): Promise<number | undefined>;
+	abstract getDuration?(): Promise<number>;
+	abstract getCurrentTime?(): Promise<number>;
+	abstract getVolume?(): Promise<number>;
+	abstract getPlaybackRate?(): Promise<number>;
 
 	supports(command: keyof IPlayerCommands): boolean {
 		return this[command] !== undefined;

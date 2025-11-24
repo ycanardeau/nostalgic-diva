@@ -22,20 +22,20 @@ class NullPlayerController implements IPlayerController {
 
 	async setPlaybackRate(playbackRate: number): Promise<void> {}
 
-	async getDuration(): Promise<number | undefined> {
-		return undefined;
+	async getDuration(): Promise<number> {
+		return 0;
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
-		return undefined;
+	async getCurrentTime(): Promise<number> {
+		return 0;
 	}
 
-	async getVolume(): Promise<number | undefined> {
-		return undefined;
+	async getVolume(): Promise<number> {
+		return 0;
 	}
 
-	async getPlaybackRate(): Promise<number | undefined> {
-		return undefined;
+	async getPlaybackRate(): Promise<number> {
+		return 0;
 	}
 
 	supports(command: keyof IPlayerCommands): boolean {

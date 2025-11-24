@@ -109,19 +109,19 @@ export class NostalgicDivaElement
 		await this.controller.setPlaybackRate(playbackRate);
 	}
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		return await this.controller.getDuration();
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		return await this.controller.getCurrentTime();
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		return await this.controller.getVolume();
 	}
 
-	async getPlaybackRate(): Promise<number | undefined> {
+	async getPlaybackRate(): Promise<number> {
 		return await this.controller.getPlaybackRate();
 	}
 

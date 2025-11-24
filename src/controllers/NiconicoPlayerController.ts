@@ -17,9 +17,9 @@ enum PlayerStatus {
 export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameElement> {
 	private static readonly origin = 'https://embed.nicovideo.jp';
 
-	private duration?: number;
-	private currentTime?: number;
-	private volume?: number;
+	private duration = 0;
+	private currentTime = 0;
+	private volume = 0;
 
 	private handleMessage = (e: nico.PlayerEvent): void => {
 		if (e.origin !== NiconicoPlayerController.origin) return;
@@ -67,7 +67,7 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 
 				this.currentTime =
 					data.data.currentTime === undefined
-						? undefined
+						? 0
 						: data.data.currentTime / 1000;
 
 				this.volume = data.data.volume;
@@ -75,10 +75,9 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 				this.options?.onTimeUpdate?.({
 					duration: this.duration,
 					percent:
-						this.currentTime !== undefined &&
-						this.duration !== undefined
+						this.currentTime !== 0 && this.duration !== 0
 							? this.currentTime / this.duration
-							: undefined,
+							: 0,
 					seconds: this.currentTime,
 				});
 				break;
@@ -123,8 +122,8 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 
 	async loadVideo(id: string): Promise<void> {
 		return new Promise((resolve, reject /* TODO: Reject. */) => {
-			this.duration = undefined;
-			this.currentTime = undefined;
+			this.duration = 0;
+			this.currentTime = 0;
 
 			// Wait for iframe to load.
 			this.player.onload = (): void => {
@@ -176,15 +175,15 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 
 	setPlaybackRate = undefined;
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		return this.duration;
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		return this.currentTime;
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		return this.volume;
 	}
 

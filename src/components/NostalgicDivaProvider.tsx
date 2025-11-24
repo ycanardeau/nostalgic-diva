@@ -71,23 +71,19 @@ export const NostalgicDivaProvider = ({
 		[],
 	);
 
-	const getDuration = useCallback(async (): Promise<number | undefined> => {
+	const getDuration = useCallback(async (): Promise<number> => {
 		return await controllerRef.current.getDuration();
 	}, []);
 
-	const getCurrentTime = useCallback(async (): Promise<
-		number | undefined
-	> => {
+	const getCurrentTime = useCallback(async (): Promise<number> => {
 		return await controllerRef.current.getCurrentTime();
 	}, []);
 
-	const getVolume = useCallback(async (): Promise<number | undefined> => {
+	const getVolume = useCallback(async (): Promise<number> => {
 		return await controllerRef.current.getVolume();
 	}, []);
 
-	const getPlaybackRate = useCallback(async (): Promise<
-		number | undefined
-	> => {
+	const getPlaybackRate = useCallback(async (): Promise<number> => {
 		return await controllerRef.current.getPlaybackRate();
 	}, []);
 

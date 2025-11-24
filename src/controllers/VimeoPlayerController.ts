@@ -58,19 +58,19 @@ export class VimeoPlayerController extends PlayerControllerImpl<Vimeo.Player> {
 		await this.player.setPlaybackRate(playbackRate);
 	}
 
-	async getDuration(): Promise<number | undefined> {
+	async getDuration(): Promise<number> {
 		return this.player.getDuration();
 	}
 
-	async getCurrentTime(): Promise<number | undefined> {
+	async getCurrentTime(): Promise<number> {
 		return this.player.getCurrentTime();
 	}
 
-	async getVolume(): Promise<number | undefined> {
+	async getVolume(): Promise<number> {
 		return this.player.getVolume();
 	}
 
-	async getPlaybackRate(): Promise<number | undefined> {
+	async getPlaybackRate(): Promise<number> {
 		return this.player.getPlaybackRate();
 	}
 }
