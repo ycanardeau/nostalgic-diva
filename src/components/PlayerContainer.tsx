@@ -77,13 +77,9 @@ export const PlayerContainer = <
 	}, [controller, onControllerChange]);
 
 	useEffect(() => {
-		(loadScript?.() ?? Promise.resolve()).then(() => {
-			playerFactory(elementRef.current, videoIdRef.current).then(
-				(player) => {
-					setPlayer(player);
-				},
-			);
-		});
+		void (loadScript?.() ?? Promise.resolve())
+			.then(() => playerFactory(elementRef.current, videoIdRef.current))
+			.then((player) => setPlayer(player));
 	}, [loadScript, playerFactory]);
 
 	// Make sure that `options` do not change between re-rendering.
@@ -100,7 +96,7 @@ export const PlayerContainer = <
 			controllerFactory,
 		);
 
-		controller
+		void controller
 			.attach(videoIdRef.current)
 			.then(() => setController(controller));
 
@@ -121,7 +117,7 @@ export const PlayerContainer = <
 			return;
 		}
 
-		controller.loadVideo(videoId);
+		void controller.loadVideo(videoId);
 	}, [previousVideoId, videoId, controller]);
 
 	// Make sure that `videoId` does not change between re-rendering.
