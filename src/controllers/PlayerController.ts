@@ -38,7 +38,7 @@ export type TwitchOptions = Record<string, never>;
 export type VimeoOptions = Record<string, never>;
 
 export type YouTubeOptions = {
-	host?: 'https://www.youtube-nocookie.com';
+	host?: 'https://www.youtube-nocookie.com' | 'https://www.youtube.com';
 };
 
 export interface PlayerOptions {
