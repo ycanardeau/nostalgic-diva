@@ -25,7 +25,32 @@ export interface TimeEvent {
 	seconds: number;
 }
 
+export type AudioOptions = Record<string, never>;
+
+export type DailymotionOptions = Record<string, never>;
+
+export type NiconicoOptions = Record<string, never>;
+
+export type SoundCloudOptions = Record<string, never>;
+
+export type TwitchOptions = Record<string, never>;
+
+export type VimeoOptions = Record<string, never>;
+
+export type YouTubeOptions = {
+	host?: 'https://www.youtube-nocookie.com' | 'https://www.youtube.com';
+};
+
 export interface PlayerOptions {
+	services?: Partial<{
+		[PlayerType.Audio]: AudioOptions;
+		[PlayerType.Dailymotion]: DailymotionOptions;
+		[PlayerType.Niconico]: NiconicoOptions;
+		[PlayerType.SoundCloud]: SoundCloudOptions;
+		[PlayerType.Twitch]: TwitchOptions;
+		[PlayerType.Vimeo]: VimeoOptions;
+		[PlayerType.YouTube]: YouTubeOptions;
+	}>;
 	onError?(event: any): void;
 	onLoaded?(event: LoadedEvent): void;
 	onPlay?(): void;

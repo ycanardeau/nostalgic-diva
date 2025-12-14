@@ -1,10 +1,9 @@
 import { PlayerContainer, PlayerProps } from '@/components/PlayerContainer';
+import { PlayerType, YouTubeOptions } from '@/controllers';
 import { LogLevel } from '@/controllers/Logger';
 import { YouTubePlayerController } from '@/controllers/YouTubePlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
 import React, { ReactElement, memo, useCallback } from 'react';
-
-const origin = 'https://www.youtube-nocookie.com';
 
 const YouTubePlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;
@@ -30,6 +29,10 @@ const YouTubePlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 		});
 	}, [logger]);
 
+	const origin: NonNullable<YouTubeOptions['host']> =
+		props.options?.services?.[PlayerType.YouTube]?.host ??
+		'https://www.youtube-nocookie.com';
+
 	const playerFactory = useCallback(
 		(element: HTMLDivElement): Promise<YT.Player> => {
 			return Promise.resolve(
@@ -40,7 +43,7 @@ const YouTubePlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 				}),
 			);
 		},
-		[],
+		[origin],
 	);
 
 	return (
