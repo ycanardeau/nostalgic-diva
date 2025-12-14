@@ -29,9 +29,8 @@ const YouTubePlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 		});
 	}, [logger]);
 
-	const origin: NonNullable<YouTubeOptions['host']> =
-		props.options?.services?.[PlayerType.YouTube]?.host ??
-		'https://www.youtube-nocookie.com';
+	const origin: YouTubeOptions['host'] =
+		props.options?.services?.[PlayerType.YouTube]?.host;
 
 	const playerFactory = useCallback(
 		(element: HTMLDivElement): Promise<YT.Player> => {
