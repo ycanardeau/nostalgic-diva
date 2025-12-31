@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"clean": "rimraf ./dist",
-		"build": "pnpm clean && tsc && vite build"
+		"build": "pnpm clean && tsgo && vite build"
 	},
 	"devDependencies": {
 		"@eslint/compat": "^2.0.0",
@@ -15,6 +15,7 @@
 		"@types/react-dom": "^18.3.7",
 		"@typescript-eslint/eslint-plugin": "^8.48.0",
 		"@typescript-eslint/parser": "^8.48.0",
+		"@typescript/native-preview": "7.0.0-dev.20251212.1",
 		"@vitejs/plugin-react": "^5.1.1",
 		"eslint": "^9.39.1",
 		"eslint-config-prettier": "^10.1.8",
@@ -29,7 +30,6 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1",
 		"rimraf": "^6.1.2",
-		"typescript": "^5.9.3",
 		"vite": "^7.2.4",
 		"vite-plugin-dts": "^4.5.4",
 		"vitest": "^4.0.14"
