@@ -64,7 +64,6 @@ export const PlayerContainer = <
 
 	const videoIdRef = useRef(videoId);
 
-	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	const elementRef = useRef<TElement>(undefined!);
 
 	const [player, setPlayer] = useState<TPlayer>();

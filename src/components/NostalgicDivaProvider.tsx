@@ -20,7 +20,6 @@ interface NostalgicDivaContextProps extends IPlayerController {
 }
 
 const NostalgicDivaContext = createContext<NostalgicDivaContextProps>(
-	// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 	undefined!,
 );
 
