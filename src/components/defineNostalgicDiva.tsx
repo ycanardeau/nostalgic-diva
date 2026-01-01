@@ -1,7 +1,7 @@
 import { NostalgicDiva } from '@/components/NostalgicDiva';
 import { NostalgicDivaProvider } from '@/components/NostalgicDivaProvider';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
-import {
+import type {
 	IPlayerCommands,
 	IPlayerController,
 	PlayerOptions,

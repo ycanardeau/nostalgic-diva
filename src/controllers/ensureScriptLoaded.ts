@@ -1,4 +1,4 @@
-import { ILogger, LogLevel } from '@/controllers/Logger';
+import { type ILogger, LogLevel } from '@/controllers/Logger';
 import { getScript } from '@/controllers/getScript';
 
 const urls: string[] = [];

@@ -1,4 +1,4 @@
-import {
+import type {
 	IPlayerCommands,
 	IPlayerController,
 } from '@/controllers/PlayerController';

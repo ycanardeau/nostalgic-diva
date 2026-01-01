@@ -1,12 +1,12 @@
-import { ILogger, LogLevel, defaultLogger } from '@/controllers/Logger';
+import { type ILogger, LogLevel, defaultLogger } from '@/controllers/Logger';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
-import {
+import type {
 	IPlayerCommands,
 	IPlayerController,
 } from '@/controllers/PlayerController';
 import React, {
-	ReactElement,
-	ReactNode,
+	type ReactElement,
+	type ReactNode,
 	createContext,
 	useCallback,
 	useContext,

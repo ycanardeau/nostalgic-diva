@@ -1,8 +1,11 @@
-import { PlayerContainer, PlayerProps } from '@/components/PlayerContainer';
+import {
+	PlayerContainer,
+	type PlayerProps,
+} from '@/components/PlayerContainer';
 import { LogLevel } from '@/controllers/Logger';
 import { YouTubePlayerController } from '@/controllers/YouTubePlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { ReactElement, memo, useCallback } from 'react';
+import React, { type ReactElement, memo, useCallback } from 'react';
 
 const origin = 'https://www.youtube-nocookie.com';
 

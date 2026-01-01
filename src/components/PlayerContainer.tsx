@@ -1,17 +1,17 @@
 import usePreviousDistinct from '@/components/usePreviousDistinct';
-import { ILogger, LogLevel } from '@/controllers/Logger';
+import { type ILogger, LogLevel } from '@/controllers/Logger';
 import { nullPlayerController } from '@/controllers/NullPlayerController';
 import {
-	IPlayerController,
+	type IPlayerController,
 	PlayerController,
-	PlayerOptions,
+	type PlayerOptions,
 	PlayerType,
 } from '@/controllers/PlayerController';
 import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 import React, {
-	MutableRefObject,
-	ReactElement,
-	ReactNode,
+	type MutableRefObject,
+	type ReactElement,
+	type ReactNode,
 	useEffect,
 	useRef,
 	useState,

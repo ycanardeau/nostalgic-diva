@@ -1,8 +1,11 @@
-import { PlayerContainer, PlayerProps } from '@/components/PlayerContainer';
+import {
+	PlayerContainer,
+	type PlayerProps,
+} from '@/components/PlayerContainer';
 import { LogLevel } from '@/controllers/Logger';
 import { TwitchPlayerController } from '@/controllers/TwitchPlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { ReactElement, memo, useCallback } from 'react';
+import React, { type ReactElement, memo, useCallback } from 'react';
 
 const TwitchPlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;

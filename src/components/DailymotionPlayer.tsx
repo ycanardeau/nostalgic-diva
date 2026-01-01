@@ -1,8 +1,11 @@
-import { PlayerContainer, PlayerProps } from '@/components/PlayerContainer';
+import {
+	PlayerContainer,
+	type PlayerProps,
+} from '@/components/PlayerContainer';
 import { DailymotionPlayerController } from '@/controllers/DailymotionPlayerController';
 import { LogLevel } from '@/controllers/Logger';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { ReactElement, memo, useCallback } from 'react';
+import React, { type ReactElement, memo, useCallback } from 'react';
 
 const DailymotionPlayer = memo(
 	({ options, ...props }: PlayerProps): ReactElement => {

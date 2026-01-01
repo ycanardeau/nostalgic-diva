@@ -1,15 +1,15 @@
 import { useNostalgicDiva } from '@/components/NostalgicDivaProvider';
-import { PlayerProps } from '@/components/PlayerContainer';
+import type { PlayerProps } from '@/components/PlayerContainer';
 import { LogLevel } from '@/controllers/Logger';
 import {
-	IPlayerController,
-	PlayerOptions,
+	type IPlayerController,
+	type PlayerOptions,
 	PlayerType,
 } from '@/controllers/PlayerController';
 import { findVideoService } from '@/services/findVideoService';
 import React, {
-	ElementType,
-	ReactElement,
+	type ElementType,
+	type ReactElement,
 	Suspense,
 	lazy,
 	memo,

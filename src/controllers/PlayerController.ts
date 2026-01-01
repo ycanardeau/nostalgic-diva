@@ -1,4 +1,4 @@
-import { ILogger, LogLevel } from '@/controllers/Logger';
+import { type ILogger, LogLevel } from '@/controllers/Logger';
 import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 
 export enum PlayerType {
