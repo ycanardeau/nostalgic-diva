@@ -68,7 +68,7 @@ export class YouTubePlayerController extends PlayerControllerImpl<YT.Player> {
 	}
 
 	attach(id: string): Promise<void> {
-		return new Promise((resolve, reject /* TODO: reject */) => {
+		return new Promise((resolve, _reject /* TODO: reject */) => {
 			this.player.addEventListener('onReady', async () => {
 				this.player.addEventListener('onError', (event) =>
 					this.options?.onError?.(event.data),

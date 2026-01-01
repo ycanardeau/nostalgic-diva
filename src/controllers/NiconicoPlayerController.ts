@@ -123,7 +123,7 @@ export class NiconicoPlayerController extends PlayerControllerImpl<HTMLIFrameEle
 	}
 
 	async loadVideo(id: string): Promise<void> {
-		return new Promise((resolve, reject /* TODO: Reject. */) => {
+		return new Promise((resolve, _reject /* TODO: Reject. */) => {
 			this.duration = 0;
 			this.currentTime = 0;
 			this.volume = 0;

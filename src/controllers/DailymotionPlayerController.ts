@@ -40,7 +40,7 @@ export class DailymotionPlayerController extends PlayerControllerImpl<DM.player>
 		}
 	};
 
-	async attach(id: string): Promise<void> {
+	async attach(_id: string): Promise<void> {
 		for (const event of events) {
 			this.player.addEventListener(event, this.handlePlayerEvents);
 		}

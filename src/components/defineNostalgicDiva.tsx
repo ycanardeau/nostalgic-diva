@@ -6,7 +6,6 @@ import type {
 	IPlayerController,
 	PlayerOptions,
 } from '@/controllers/PlayerController';
-import React from 'react';
 import ReactDOM from 'react-dom';
 
 export class NostalgicDivaElement

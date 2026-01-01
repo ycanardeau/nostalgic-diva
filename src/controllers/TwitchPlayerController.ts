@@ -25,7 +25,7 @@ export class TwitchPlayerController extends PlayerControllerImpl<Twitch.Player> 
 		});
 	};
 
-	async attach(id: string): Promise<void> {
+	async attach(_id: string): Promise<void> {
 		this.player.addEventListener(Twitch.Player.READY, this.handleReady);
 		this.player.addEventListener(Twitch.Player.PLAYING, this.handlePlay);
 		this.player.addEventListener(Twitch.Player.PAUSE, this.handlePause);

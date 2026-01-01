@@ -4,7 +4,7 @@ import {
 } from '@/components/PlayerContainer';
 import { LogLevel } from '@/controllers/Logger';
 import { NiconicoPlayerController } from '@/controllers/NiconicoPlayerController';
-import React, { type ReactElement, memo, useCallback } from 'react';
+import { type ReactElement, memo, useCallback } from 'react';
 
 const NiconicoPlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;

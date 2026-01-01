@@ -7,7 +7,7 @@ import {
 	PlayerType,
 } from '@/controllers/PlayerController';
 import { findVideoService } from '@/services/findVideoService';
-import React, {
+import {
 	type ElementType,
 	type ReactElement,
 	Suspense,

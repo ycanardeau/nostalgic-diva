@@ -5,7 +5,7 @@ import {
 import { LogLevel } from '@/controllers/Logger';
 import { SoundCloudPlayerController } from '@/controllers/SoundCloudPlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { type ReactElement, memo, useCallback } from 'react';
+import { type ReactElement, memo, useCallback } from 'react';
 
 const SoundCloudPlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;

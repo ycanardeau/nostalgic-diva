@@ -5,7 +5,7 @@ import {
 import { LogLevel } from '@/controllers/Logger';
 import { YouTubePlayerController } from '@/controllers/YouTubePlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { type ReactElement, memo, useCallback } from 'react';
+import { type ReactElement, memo, useCallback } from 'react';
 
 const origin = 'https://www.youtube-nocookie.com';
 
@@ -15,7 +15,7 @@ const YouTubePlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	logger.log(LogLevel.Debug, 'YouTubePlayer');
 
 	const loadScript = useCallback((): Promise<void> => {
-		return new Promise(async (resolve, reject) => {
+		return new Promise(async (resolve, _reject) => {
 			const first = await ensureScriptLoaded(
 				'https://www.youtube.com/iframe_api',
 				logger,

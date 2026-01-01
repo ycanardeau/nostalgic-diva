@@ -5,7 +5,7 @@ import {
 import { LogLevel } from '@/controllers/Logger';
 import { TwitchPlayerController } from '@/controllers/TwitchPlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { type ReactElement, memo, useCallback } from 'react';
+import { type ReactElement, memo, useCallback } from 'react';
 
 const TwitchPlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;

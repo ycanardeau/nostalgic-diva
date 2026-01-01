@@ -4,7 +4,7 @@ import {
 } from '@/components/PlayerContainer';
 import { AudioPlayerController } from '@/controllers/AudioPlayerController';
 import { LogLevel } from '@/controllers/Logger';
-import React, { type ReactElement, memo, useCallback } from 'react';
+import { type ReactElement, memo, useCallback } from 'react';
 
 const AudioPlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;

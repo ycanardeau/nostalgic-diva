@@ -3,13 +3,13 @@ import { PlayerControllerImpl } from '@/controllers/PlayerControllerImpl';
 // https://github.com/VocaDB/vocadb/blob/e147650a8f1f85c8fa865d0ab562126c278527ec/VocaDbWeb/Scripts/ViewModels/PVs/PVPlayerSoundCloud.ts.
 export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundCloudWidget> {
 	private getDurationCore(): Promise<number> {
-		return new Promise((resolve, reject /* TODO: Reject. */) => {
+		return new Promise((resolve, _reject /* TODO: Reject. */) => {
 			this.player.getDuration(resolve);
 		});
 	}
 
 	attach(id: string): Promise<void> {
-		return new Promise((resolve, reject /* TODO: reject */) => {
+		return new Promise((resolve, _reject /* TODO: reject */) => {
 			this.player.bind(SC.Widget.Events.READY, () => {
 				this.player.bind(
 					SC.Widget.Events.PLAY_PROGRESS,
@@ -56,7 +56,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 		url: string,
 		options: Omit<SC.SoundCloudLoadOptions, 'callback'>,
 	): Promise<void> {
-		return new Promise((resolve, reject /* TODO: Reject. */) => {
+		return new Promise((resolve, _reject /* TODO: Reject. */) => {
 			player.load(url, { ...options, callback: resolve });
 		});
 	}
@@ -95,7 +95,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 	}
 
 	private getCurrentTimeCore(): Promise<number> {
-		return new Promise((resolve, reject /* TODO: Reject. */) => {
+		return new Promise((resolve, _reject /* TODO: Reject. */) => {
 			this.player.getPosition(resolve);
 		});
 	}
@@ -106,7 +106,7 @@ export class SoundCloudPlayerController extends PlayerControllerImpl<SC.SoundClo
 	}
 
 	private getVolumeCore(): Promise<number> {
-		return new Promise((resolve, reject /* TODO: Reject. */) => {
+		return new Promise((resolve, _reject /* TODO: Reject. */) => {
 			this.player.getVolume(resolve);
 		});
 	}

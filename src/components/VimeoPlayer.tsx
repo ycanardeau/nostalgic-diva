@@ -5,7 +5,7 @@ import {
 import { LogLevel } from '@/controllers/Logger';
 import { VimeoPlayerController } from '@/controllers/VimeoPlayerController';
 import { ensureScriptLoaded } from '@/controllers/ensureScriptLoaded';
-import React, { type ReactElement, memo, useCallback } from 'react';
+import { type ReactElement, memo, useCallback } from 'react';
 
 const VimeoPlayer = memo(({ ...props }: PlayerProps): ReactElement => {
 	const { logger } = props;
